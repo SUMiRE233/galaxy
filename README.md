@@ -1,12 +1,12 @@
 # Music Galaxy
 
-Music Galaxy 是一个面向“多媒体数据可视化”课程的初步可运行项目。它将每首歌曲表示为一个节点，将音频特征相似度表示为边，再通过 ECharts 力导向布局形成可交互的“音乐星系”。
+Music Galaxy 是一个面向数据可视化课程的项目。它将每首歌曲表示为一个节点，将音频特征相似度表示为边，再通过 ECharts 力导向布局形成可交互的"音乐星系"。
 
 项目重点是音乐相似关系可视化，而不是训练音乐分类模型。即使 FMA small 尚未下载，也可以仅使用内置 demo 数据完整运行。
 
 ## 项目目标
 
-- 建立 demo、个人音乐、FMA small 三类数据的统一特征管线。
+- 建立 demo、个人音乐、FMA small、GTZAN 四类数据的统一特征管线。
 - 使用 librosa 提取前 30 秒音频的节奏、能量、频谱与 MFCC 特征。
 - 标准化特征并使用余弦相似度连接每首歌的 Top-K 邻居。
 - 生成可供前端直接读取的 `music_graph.json`。
@@ -23,22 +23,30 @@ music-galaxy/
 │  │  ├─ personal/
 │  │  │  ├─ audios/
 │  │  │  └─ personal_tracks.csv
-│  │  └─ fma_small/
+│  │  ├─ fma_small/
+│  │  └─ gtzan/
+│  │     ├─ genres_original/
+│  │     ├─ images_original/
+│  │     ├─ features_3_sec.csv
+│  │     └─ features_30_sec.csv
 │  └─ processed/
 │     ├─ demo_features.csv
 │     ├─ personal_features.csv
 │     ├─ fma_features.csv
+│     ├─ gtzan_features.csv
 │     ├─ music_features_all.csv
 │     ├─ music_graph.json
 │     └─ personal_recommendations.csv
 ├─ scripts/
 │  ├─ common.py
+│  ├─ server.py
 │  ├─ 00_generate_demo_data.py
 │  ├─ 01_extract_personal_features.py
 │  ├─ 02_extract_fma_features.py
 │  ├─ 03_merge_features.py
 │  ├─ 04_build_graph.py
-│  └─ 05_run_pipeline.py
+│  ├─ 05_run_pipeline.py
+│  └─ 06_import_gtzan_features.py
 └─ web/
    ├─ index.html
    ├─ app.js
@@ -98,49 +106,49 @@ cd web
 python -m http.server 8000
 ```
 
-## Uploading Personal Music
+## 上传个人音乐
 
-This project now supports a local upload workflow for personal audio files. The audio file stays on your machine and is processed by a local FastAPI service.
+本项目支持本地上传个人音频文件的工作流。音频文件保留在您的计算机上，由本地 FastAPI 服务处理。
 
-Install dependencies:
+安装依赖：
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Start the local processing backend from the project root:
+从项目根目录启动本地处理后端：
 
 ```bash
 python scripts/server.py
 ```
 
-Start the frontend in another terminal:
+在另一个终端启动前端：
 
 ```bash
 cd web
 python -m http.server 8000
 ```
 
-Open:
+打开：
 
 ```text
 http://localhost:8000
 ```
 
-Then drag and drop an MP3/audio file into the upload panel, or click the upload button.
+然后将 MP3 或其他音频文件拖放到上传面板，或点击上传按钮。
 
-What happens locally:
+本地处理流程：
 
-- The FastAPI backend saves the file under `data/raw/personal/audios/`.
-- `mutagen` reads local audio metadata such as title, artist, album, genre and year.
-- `librosa` extracts audio features from the first 30 seconds.
-- If the audio file has no genre tag, the frontend asks you to select a genre.
-- The song is appended to `data/processed/personal_features.csv`.
-- `data/raw/personal/personal_tracks.csv` is updated automatically.
-- The graph is rebuilt and copied to `web/music_graph.json`.
-- Personal songs appear as larger highlighted nodes.
+- FastAPI 后端将文件保存到 `data/raw/personal/audios/`。
+- `mutagen` 读取本地音频元数据，如标题、艺术家、专辑、流派和年份。
+- `librosa` 提取前 30 秒的音频特征。
+- 如果音频文件没有流派标签，前端会要求您选择一个流派。
+- 歌曲被追加到 `data/processed/personal_features.csv`。
+- `data/raw/personal/personal_tracks.csv` 自动更新。
+- 图结构被重新构建并复制到 `web/music_graph.json`。
+- 个人歌曲显示为较大的高亮节点。
 
-This version does not upload files to any external server and does not perform online song recognition. Future work can integrate AcoustID or MusicBrainz for audio fingerprint-based identification.
+此版本不会将文件上传到任何外部服务器，也不执行在线歌曲识别。未来可以集成 AcoustID 或 MusicBrainz 实现基于音频指纹的识别。
 
 浏览器访问 <http://localhost:8000>。
 
@@ -151,21 +159,16 @@ This version does not upload files to any external server and does not perform o
 ## 加入个人音乐
 
 1. 将 MP3、WAV、FLAC、OGG、M4A 或 AAC 文件放入：
-
    ```text
    data/raw/personal/audios/
    ```
-
 2. 编辑 `data/raw/personal/personal_tracks.csv`：
-
    ```csv
    filename,title,artist,genre
    my_song.mp3,My Song,My Artist,Pop
    another.wav,Another Song,Someone,Jazz
    ```
-
 3. 运行：
-
    ```bash
    python scripts/05_run_pipeline.py --mode personal
    ```
@@ -180,7 +183,7 @@ This version does not upload files to any external server and does not perform o
 python scripts/05_run_pipeline.py --mode all
 ```
 
-混合模式总会生成 demo 数据，并尽可能加入 personal 和 FMA 数据。缺失的数据源会被跳过，不会导致整个流程失败。
+混合模式总会生成 demo 数据，并尽可能加入 personal、FMA 和 GTZAN 数据。缺失的数据源会被跳过，不会导致整个流程失败。
 
 处理大量音频前可先限制数量：
 
@@ -211,6 +214,24 @@ python scripts/02_extract_fma_features.py --limit 100
 python scripts/03_merge_features.py --sources demo fma
 python scripts/04_build_graph.py --top-k 5
 ```
+
+## 接入 GTZAN
+
+GTZAN 数据集已内置在 `data/raw/gtzan/` 目录中，包含四个流派（blues、jazz、pop、rock）的音频文件和预计算特征。
+
+使用以下命令导入 GTZAN 特征：
+
+```bash
+python scripts/06_import_gtzan_features.py
+```
+
+或在混合模式中自动处理：
+
+```bash
+python scripts/05_run_pipeline.py --mode all
+```
+
+GTZAN 数据会被提取并合并到 `data/processed/gtzan_features.csv`。
 
 ## 特征与技术路线
 
@@ -267,3 +288,4 @@ python scripts/05_run_pipeline.py --mode demo --top-k 20
 cd web
 python -m http.server 8000
 ```
+
