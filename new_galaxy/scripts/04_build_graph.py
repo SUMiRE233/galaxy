@@ -108,7 +108,7 @@ def build_graph(frame: pd.DataFrame, top_k: int = 5) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="计算相似度并生成前端图数据")
-    parser.add_argument("--top-k", type=int, default=5, choices=range(1, 21))
+    parser.add_argument("--top-k", type=int, default=5, choices=range(1, 11))
     args = parser.parse_args()
     ensure_directories()
 
@@ -154,3 +154,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

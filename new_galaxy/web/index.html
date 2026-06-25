@@ -36,30 +36,10 @@
           <option value="demo">Demo</option>
           <option value="personal">Personal</option>
           <option value="fma">FMA</option>
-          <option value="gtzan">GTZAN</option>
         </select>
-      </label>
-      <label class="topk-control">
-        <span>Top-K 相似关系</span>
-        <div class="range-row">
-          <input id="topk-slider" type="range" min="1" max="20" value="5">
-          <strong id="topk-value">5</strong>
-        </div>
       </label>
       <button id="reset-filter" type="button">重置筛选</button>
       <p class="hint"><i></i> 拖拽节点探索星系，滚轮缩放，点击查看详情</p>
-    </section>
-
-    <section class="upload-panel" id="upload-panel">
-      <div class="upload-dropzone" id="upload-dropzone">
-        <div>
-          <strong>拖入音频文件，加入 Music Galaxy</strong>
-          <p>支持 MP3、WAV、FLAC、M4A 等格式。本地服务会读取标签并自动提取音频特征。</p>
-          <p id="upload-status" class="upload-status"></p>
-        </div>
-        <input id="audio-upload-input" type="file" accept="audio/*" hidden>
-        <button id="choose-audio-button" type="button">选择音频文件</button>
-      </div>
     </section>
 
     <main class="content">
@@ -81,8 +61,8 @@
           </div>
           <h2 id="detail-title"></h2>
           <p id="detail-artist" class="artist"></p>
-          <div class="player-bar hidden" id="player-bar">
-            <button id="btn-play" class="btn-play" title="Play / Pause">&#9654;</button>
+          <div class="player-bar">
+            <button id="btn-play" class="btn-play" title="播放 / 暂停">&#9654;</button>
             <div class="player-wave" id="player-wave"></div>
             <span id="play-time" class="play-time">00:00</span>
           </div>
@@ -103,7 +83,7 @@
   <div id="visualizer-overlay" class="visualizer-overlay hidden">
     <canvas id="viz-canvas"></canvas>
     <div class="viz-controls">
-      <button id="viz-close" class="viz-close" title="Back to galaxy">&#10005;</button>
+      <button id="viz-close" class="viz-close" title="返回星图">&#10005;</button>
       <div class="viz-track">
         <span id="viz-genre" class="viz-genre-badge"></span>
         <strong id="viz-title"></strong>
@@ -116,46 +96,8 @@
     </div>
   </div>
 
-  <div class="modal-backdrop hidden" id="genre-modal">
-    <section class="genre-modal" role="dialog" aria-modal="true" aria-labelledby="genre-modal-title">
-      <h2 id="genre-modal-title">请选择歌曲流派</h2>
-      <p class="modal-intro">该音频没有可用的 genre 标签。选择后会加入个人音乐节点并重建星图。</p>
-      <dl class="metadata-list">
-        <div><dt>文件</dt><dd id="pending-filename">--</dd></div>
-        <div><dt>标题</dt><dd id="pending-title">--</dd></div>
-        <div><dt>艺人</dt><dd id="pending-artist">--</dd></div>
-        <div><dt>专辑</dt><dd id="pending-album">--</dd></div>
-      </dl>
-      <label class="genre-select-row">
-        <span>流派</span>
-        <select id="pending-genre-select">
-          <option>Blues</option>
-          <option>Classical</option>
-          <option>Country</option>
-          <option>Disco</option>
-          <option>Electronic</option>
-          <option>Folk</option>
-          <option>Hip-Hop</option>
-          <option>Jazz</option>
-          <option>Metal</option>
-          <option selected>Pop</option>
-          <option>Reggae</option>
-          <option>Rock</option>
-          <option>J-Pop</option>
-          <option>Unknown</option>
-        </select>
-      </label>
-      <p id="unknown-genre-note" class="genre-note hidden">
-        使用 Unknown 是允许的，但可能降低流派颜色和筛选质量。
-      </p>
-      <div class="modal-actions">
-        <button id="cancel-genre-button" type="button">取消</button>
-        <button id="confirm-genre-button" type="button" class="primary-button">确认加入星图</button>
-      </div>
-    </section>
-  </div>
-
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
-  <script src="app.js?v=player-1"></script>
+  <script src="app.js"></script>
 </body>
 </html>
+

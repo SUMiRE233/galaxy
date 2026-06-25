@@ -88,7 +88,7 @@ python scripts/05_run_pipeline.py --mode demo
 可以调整 demo 数量和邻居数：
 
 ```bash
-python scripts/05_run_pipeline.py --mode demo --demo-count 150 --top-k 20
+python scripts/05_run_pipeline.py --mode demo --demo-count 150 --top-k 3
 ```
 
 然后启动前端：
@@ -97,50 +97,6 @@ python scripts/05_run_pipeline.py --mode demo --demo-count 150 --top-k 20
 cd web
 python -m http.server 8000
 ```
-
-## Uploading Personal Music
-
-This project now supports a local upload workflow for personal audio files. The audio file stays on your machine and is processed by a local FastAPI service.
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Start the local processing backend from the project root:
-
-```bash
-python scripts/server.py
-```
-
-Start the frontend in another terminal:
-
-```bash
-cd web
-python -m http.server 8000
-```
-
-Open:
-
-```text
-http://localhost:8000
-```
-
-Then drag and drop an MP3/audio file into the upload panel, or click the upload button.
-
-What happens locally:
-
-- The FastAPI backend saves the file under `data/raw/personal/audios/`.
-- `mutagen` reads local audio metadata such as title, artist, album, genre and year.
-- `librosa` extracts audio features from the first 30 seconds.
-- If the audio file has no genre tag, the frontend asks you to select a genre.
-- The song is appended to `data/processed/personal_features.csv`.
-- `data/raw/personal/personal_tracks.csv` is updated automatically.
-- The graph is rebuilt and copied to `web/music_graph.json`.
-- Personal songs appear as larger highlighted nodes.
-
-This version does not upload files to any external server and does not perform online song recognition. Future work can integrate AcoustID or MusicBrainz for audio fingerprint-based identification.
 
 浏览器访问 <http://localhost:8000>。
 
@@ -250,20 +206,3 @@ python scripts/04_build_graph.py --top-k 5
 - 相似度为特征空间中的数学距离，不等同于主观音乐品味。
 - 所有脚本都应从项目根目录运行；脚本内部使用 `pathlib.Path` 解析路径，不依赖固定操作系统路径。
 
-## 前端 Top-K 相似关系滑块
-
-页面顶部提供 `Top-K 相似关系` 滑块，可在 Top-1 到 Top-20 之间实时切换当前显示的相似边数量。这个滑块只基于已加载的 `music_graph.json` 做前端筛选，不会重新运行 Python，也不会重新计算歌曲相似度。
-
-建议后端构图时一次性生成较大的候选 Top-K，例如：
-
-```bash
-python scripts/04_build_graph.py --top-k 20
-```
-
-如果 JSON 里只生成了 Top-5 推荐，那么前端滑块即使调到 Top-20，也最多只能显示已有的推荐关系。推荐运行方式：
-
-```bash
-python scripts/05_run_pipeline.py --mode demo --top-k 20
-cd web
-python -m http.server 8000
-```

@@ -31,7 +31,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="运行 Music Galaxy 完整数据管线")
     parser.add_argument("--mode", choices=["demo", "personal", "all"], default="demo")
     parser.add_argument("--demo-count", type=int, default=120)
-    parser.add_argument("--top-k", type=int, default=20, choices=range(1, 21))
+    parser.add_argument("--top-k", type=int, default=5, choices=range(1, 11))
     parser.add_argument("--limit", type=int, default=None, help="限制 personal/FMA 处理数量")
     args = parser.parse_args()
     ensure_directories()
@@ -69,3 +69,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

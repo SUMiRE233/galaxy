@@ -1,2 +1,3 @@
-filename,title,artist,genre
-
+﻿filename,title,artist,album,genre,year,source_method,confidence
+-.mp3,冬眠,ヨルシカ,負け犬にアンコールはいらない,J-Pop,,id3,metadata
+-_1.mp3,冬眠,ヨルシカ,負け犬にアンコールはいらない,J-Pop,,id3,metadata

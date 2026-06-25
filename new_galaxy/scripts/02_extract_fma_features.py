@@ -35,22 +35,25 @@ def extract_fma(limit: int | None = None) -> pd.DataFrame:
 
         track_id = audio_path.stem
         id3 = extract_id3_metadata(audio_path)
+        title = id3.get("title", "") or f"FMA Track {track_id}"
+        artist = id3.get("artist", "") or "FMA Artist"
+        genre = id3.get("genre", "") or "Unknown"
         rows.append(
             {
                 "id": f"fma_{track_id}",
                 "track_id": track_id,
-                "title": id3.get("title") or f"FMA Track {track_id}",
-                "artist": id3.get("artist") or "FMA Artist",
-                "genre": id3.get("genre") or "Unknown",
+                "title": title,
+                "artist": artist,
+                "genre": genre,
                 "source": "fma",
                 "filename": audio_path.name,
                 "path": str(audio_path.relative_to(fma_dir.parent.parent.parent)),
                 **features,
             }
         )
-        print(f"已处理 FMA: {audio_path.name}")
+        print(f"已处理 FMA: {audio_path.name}  [{genre}] {title} — {artist}")
 
-    print("说明: 当前 FMA 接口从文件名生成基础元数据，可后续接入 tracks.csv 丰富标题/艺人/流派。")
+    print("说明: 已从 MP3 ID3 标签提取标题/艺人/流派。")
     return pd.DataFrame(rows) if rows else empty_feature_frame()
 
 
@@ -64,3 +67,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

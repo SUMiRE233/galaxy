@@ -11,7 +11,6 @@ SOURCE_FILES = {
     "demo": "demo_features.csv",
     "personal": "personal_features.csv",
     "fma": "fma_features.csv",
-    "gtzan": "gtzan_features.csv",
 }
 
 

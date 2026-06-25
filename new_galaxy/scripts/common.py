@@ -65,29 +65,33 @@ def normalize_feature_frame(frame: pd.DataFrame) -> pd.DataFrame:
 
 
 def extract_id3_metadata(audio_path: Path) -> dict[str, str]:
-    """Best-effort title/artist/genre extraction from local audio tags."""
+    """从 MP3 ID3 标签中提取元数据（标题、艺人、流派）。"""
     try:
         from mutagen import File as MutagenFile
     except ImportError:
         return {}
 
     try:
-        audio = MutagenFile(str(audio_path), easy=True)
+        audio = MutagenFile(str(audio_path))
     except Exception:
         return {}
 
-    if audio is None:
+    if audio is None or not audio.tags:
         return {}
 
     result: dict[str, str] = {}
-    for tag_name in ("title", "artist", "genre"):
-        value = audio.get(tag_name)
-        if isinstance(value, (list, tuple)) and value:
-            text = str(value[0]).strip()
-        else:
-            text = str(value).strip() if value else ""
-        if text:
-            result[tag_name] = text
+    tag_map = {
+        "TIT2": "title",
+        "TPE1": "artist",
+        "TCON": "genre",
+    }
+    for tag_key, field_name in tag_map.items():
+        tag = audio.tags.get(tag_key)
+        if tag and hasattr(tag, "text") and tag.text:
+            text = str(tag.text[0]).strip() if isinstance(tag.text, list) else str(tag.text).strip()
+            if text:
+                result[field_name] = text
+
     return result
 
 
@@ -143,3 +147,4 @@ def first_nonempty(values: Iterable[object], default: str) -> str:
         if pd.notna(value) and str(value).strip():
             return str(value).strip()
     return default
+
