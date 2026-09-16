@@ -1,0 +1,75 @@
+{
+  "run_id": "git_history_audit_20260916T132406Z",
+  "timestamp": "2026-09-16T13:24:06.729401+00:00",
+  "result": {
+    "scope": "all_reachable_git_history",
+    "git": {
+      "commit": "68d42f10af9fa32389dcb8278a292fd9957340e6",
+      "dirty": true
+    },
+    "summary": {
+      "commits_scanned": 4,
+      "personal_metadata_findings": 6,
+      "commits_with_personal_metadata": 3,
+      "tracked_audio_paths": 0,
+      "potential_secret_signatures": 0
+    },
+    "personal_metadata": [
+      {
+        "commit": "68d42f10af9fa32389dcb8278a292fd9957340e6",
+        "path": "web/music_graph.json",
+        "personal_records": 2,
+        "nonempty_titles": 2,
+        "nonempty_artists": 2,
+        "nonempty_paths": 2
+      },
+      {
+        "commit": "68d42f10af9fa32389dcb8278a292fd9957340e6",
+        "path": "data/raw/personal/personal_tracks.csv",
+        "personal_records": 2,
+        "nonempty_titles": 2,
+        "nonempty_artists": 2,
+        "nonempty_paths": 0
+      },
+      {
+        "commit": "a11e58395d8ac746bd5ea27b899ffd9d43043603",
+        "path": "web/music_graph.json",
+        "personal_records": 2,
+        "nonempty_titles": 2,
+        "nonempty_artists": 2,
+        "nonempty_paths": 2
+      },
+      {
+        "commit": "a11e58395d8ac746bd5ea27b899ffd9d43043603",
+        "path": "data/raw/personal/personal_tracks.csv",
+        "personal_records": 2,
+        "nonempty_titles": 2,
+        "nonempty_artists": 2,
+        "nonempty_paths": 0
+      },
+      {
+        "commit": "b4182dbd6e05f810358b5b71096b90fd25c7ff49",
+        "path": "web/music_graph.json",
+        "personal_records": 2,
+        "nonempty_titles": 2,
+        "nonempty_artists": 2,
+        "nonempty_paths": 2
+      },
+      {
+        "commit": "b4182dbd6e05f810358b5b71096b90fd25c7ff49",
+        "path": "data/raw/personal/personal_tracks.csv",
+        "personal_records": 2,
+        "nonempty_titles": 2,
+        "nonempty_artists": 2,
+        "nonempty_paths": 0
+      }
+    ],
+    "tracked_audio_paths": [],
+    "potential_secret_signatures": [],
+    "limitations": [
+      "Signature scanning covers common key formats and is not a proof that no secret exists.",
+      "The report intentionally omits personal title and artist values.",
+      "Removing current files does not remove historical blobs; rewriting history requires explicit authorization."
+    ]
+  }
+}

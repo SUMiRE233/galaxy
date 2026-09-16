@@ -10,7 +10,6 @@ from common import PROCESSED_DIR, ensure_directories, normalize_feature_frame, w
 SOURCE_FILES = {
     "demo": "demo_features.csv",
     "personal": "personal_features.csv",
-    "fma": "fma_features.csv",
     "gtzan": "gtzan_features.csv",
 }
 

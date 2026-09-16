@@ -10,6 +10,9 @@ const API_BASE_URL = "http://127.0.0.1:8001";
 const uploadDropzone = document.getElementById("upload-dropzone");
 const audioUploadInput = document.getElementById("audio-upload-input");
 const chooseAudioButton = document.getElementById("choose-audio-button");
+const exportPersonalButton = document.getElementById("export-personal-button");
+const resetPersonalButton = document.getElementById("reset-personal-button");
+const deletePersonalButton = document.getElementById("delete-personal-button");
 const uploadStatus = document.getElementById("upload-status");
 const genreModal = document.getElementById("genre-modal");
 const pendingFilename = document.getElementById("pending-filename");
@@ -83,7 +86,7 @@ function tooltipFormatter(params) {
     来源：${node.source === "personal" ? "My Music" : escapeHtml(node.source)}<br>
     BPM：${Number(node.tempo).toFixed(1)}<br>
     Energy：${Number(node.energy).toFixed(3)}<br>
-    ${node.path && ["fma", "personal", "gtzan"].includes(node.source)
+    ${node.path && ["personal", "gtzan"].includes(node.source)
       ? '<em style="color:#58d6ff">点击节点后可播放</em>'
       : ""}
   `;
@@ -99,40 +102,7 @@ function getVisibleTopK() {
   return Number(topKSlider?.value || DEFAULT_TOP_K);
 }
 
-function buildVisibleLinks(graphData, visibleIds, topK) {
-  if (graphData.recommendations) {
-    const links = [];
-    const seen = new Set();
-
-    graphData.nodes.forEach((node) => {
-      const source = String(node.id);
-      if (!visibleIds.has(source)) return;
-
-      const recs = graphData.recommendations?.[source] || [];
-      recs.slice(0, topK).forEach((rec) => {
-        const target = String(rec.id);
-        if (!visibleIds.has(target)) return;
-
-        const key = [source, target].sort().join("__");
-        if (seen.has(key)) return;
-        seen.add(key);
-
-        links.push({
-          source,
-          target,
-          value: Number(rec.similarity || 0),
-        });
-      });
-    });
-
-    return links;
-  }
-
-  return (graphData.links || [])
-    .filter((link) => visibleIds.has(String(link.source)) && visibleIds.has(String(link.target)))
-    .sort((a, b) => Number(b.value || 0) - Number(a.value || 0))
-    .slice(0, visibleIds.size * topK);
-}
+const buildVisibleLinks = window.MusicGraphUtils.buildVisibleLinks;
 
 async function ensureAudioContext() {
   if (!audioCtx) {
@@ -521,8 +491,9 @@ function showDetail(node) {
   document.getElementById("detail-centroid").textContent =
     `${Math.round(Number(node.spectral_centroid))} Hz`;
 
-  const hasAudio = node.path && ["fma", "personal", "gtzan"].includes(node.source);
+  const hasAudio = node.path && ["personal", "gtzan"].includes(node.source);
   playerBar?.classList.toggle("hidden", !hasAudio);
+  deletePersonalButton?.classList.toggle("hidden", node.source !== "personal");
   if (hasAudio) {
     const url = resolveAudioUrl(node);
     const playingThisTrack = currentTrackUrl === url && isPlaying;
@@ -665,15 +636,128 @@ async function confirmPersonalGenre() {
   }
 }
 
+async function cancelPendingUpload() {
+  const tempId = pendingUploadTempId;
+  if (!tempId) {
+    genreModal.classList.add("hidden");
+    return;
+  }
+
+  cancelGenreButton.disabled = true;
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/api/pending-personal/${encodeURIComponent(tempId)}`,
+      { method: "DELETE" },
+    );
+    await parseApiResponse(response);
+    genreModal.classList.add("hidden");
+    pendingUploadTempId = null;
+    setUploadStatus("已取消加入该音频。");
+  } catch (error) {
+    setUploadStatus(error.message, "error");
+  } finally {
+    cancelGenreButton.disabled = false;
+  }
+}
+
+
+function clearSelectedDetail() {
+  stopAudio();
+  currentNode = null;
+  selectedNodeId = null;
+  document.getElementById("song-detail").classList.add("hidden");
+  document.getElementById("empty-detail").classList.remove("hidden");
+}
+
+
+async function downloadPersonalExport() {
+  exportPersonalButton.disabled = true;
+  setUploadStatus("正在导出个人音乐数据...");
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/personal/export`);
+    if (!response.ok) await parseApiResponse(response);
+    const blob = await response.blob();
+    const disposition = response.headers.get("Content-Disposition") || "";
+    const match = disposition.match(/filename="?([^";]+)"?/i);
+    const filename = match?.[1] || "music-galaxy-personal.zip";
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = filename;
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    URL.revokeObjectURL(url);
+    setUploadStatus("个人数据已导出。", "success");
+  } catch (error) {
+    setUploadStatus(error.message, "error");
+  } finally {
+    exportPersonalButton.disabled = false;
+  }
+}
+
+
+async function deleteSelectedPersonalTrack() {
+  if (!currentNode || currentNode.source !== "personal") return;
+  if (!window.confirm(`确定删除个人节点“${currentNode.title}”及其本地音频吗？`)) return;
+
+  deletePersonalButton.disabled = true;
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/api/personal/${encodeURIComponent(currentNode.id)}`,
+      { method: "DELETE" },
+    );
+    const result = await parseApiResponse(response);
+    clearSelectedDetail();
+    await refreshGraph();
+    setUploadStatus(result.message || "个人节点已删除。", "success");
+  } catch (error) {
+    setUploadStatus(error.message, "error");
+  } finally {
+    deletePersonalButton.disabled = false;
+  }
+}
+
+
+async function resetAllPersonalData() {
+  const confirmed = window.confirm(
+    "这会删除全部个人节点、本地上传音频和待确认记录。建议先导出。是否继续？",
+  );
+  if (!confirmed) return;
+
+  resetPersonalButton.disabled = true;
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/personal/reset`, {
+      method: "POST",
+    });
+    const result = await parseApiResponse(response);
+    clearSelectedDetail();
+    await refreshGraph();
+    setUploadStatus(result.message || "已恢复初始化状态。", "success");
+  } catch (error) {
+    setUploadStatus(error.message, "error");
+  } finally {
+    resetPersonalButton.disabled = false;
+  }
+}
+
+
 async function loadGraph() {
   if (typeof echarts === "undefined") {
     throw new Error("ECharts 未加载。请检查网络连接或改用本地 ECharts 文件。");
   }
-  const response = await fetch("music_graph.json");
+  let graphUrl = "music_graph.json";
+  let response = await fetch(graphUrl);
   if (!response.ok) {
-    throw new Error(`music_graph.json 加载失败 (${response.status})`);
+    graphUrl = "music_graph.example.json";
+    response = await fetch(graphUrl);
   }
+  if (!response.ok) {
+    throw new Error(`星图数据加载失败 (${response.status})`);
+  }
+
   graphData = await response.json();
+  console.info(`Loaded Music Galaxy graph: ${graphUrl}`);
   chart = echarts.init(chartElement, null, { renderer: "canvas" });
   if (topKSlider) topKSlider.value = String(DEFAULT_TOP_K);
   if (topKValue) topKValue.textContent = String(DEFAULT_TOP_K);
@@ -733,11 +817,7 @@ async function loadGraph() {
     unknownGenreNote.classList.toggle("hidden", pendingGenreSelect.value !== "Unknown");
   });
   confirmGenreButton?.addEventListener("click", confirmPersonalGenre);
-  cancelGenreButton?.addEventListener("click", () => {
-    genreModal.classList.add("hidden");
-    pendingUploadTempId = null;
-    setUploadStatus("已取消加入该音频。");
-  });
+  cancelGenreButton?.addEventListener("click", cancelPendingUpload);
   btnPlay?.addEventListener("click", () => {
     if (currentNode) playTrack(currentNode);
   });
@@ -750,6 +830,9 @@ async function loadGraph() {
       closeVisualizer();
     }
   });
+  exportPersonalButton?.addEventListener("click", downloadPersonalExport);
+  resetPersonalButton?.addEventListener("click", resetAllPersonalData);
+  deletePersonalButton?.addEventListener("click", deleteSelectedPersonalTrack);
 
   loadingElement.remove();
   renderGraph();

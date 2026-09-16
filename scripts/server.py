@@ -4,17 +4,20 @@ import importlib.util
 import json
 import re
 import shutil
+import tempfile
 import sys
 import uuid
+import zipfile
 from datetime import datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 import pandas as pd
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from starlette.background import BackgroundTask
 
 SCRIPTS_DIR = Path(__file__).resolve().parent
 if str(SCRIPTS_DIR) not in sys.path:
@@ -40,6 +43,16 @@ PERSONAL_AUDIO_DIR = RAW_DIR / "personal" / "audios"
 PERSONAL_TRACKS_PATH = RAW_DIR / "personal" / "personal_tracks.csv"
 PERSONAL_FEATURES_PATH = PROCESSED_DIR / "personal_features.csv"
 GRAPH_PATH = WEB_DIR / "music_graph.json"
+PERSONAL_TRACK_COLUMNS = [
+    "filename",
+    "title",
+    "artist",
+    "album",
+    "genre",
+    "year",
+    "source_method",
+    "confidence",
+]
 
 app = FastAPI(title="Music Galaxy Local Processor")
 app.add_middleware(
@@ -56,9 +69,12 @@ class ConfirmGenreRequest(BaseModel):
     genre: str
 
 
+SourceName = Literal["demo", "personal", "gtzan"]
+
+
 class RebuildGraphRequest(BaseModel):
-    sources: list[str] | None = None
-    top_k: int = 20
+    sources: list[SourceName] | None = None
+    top_k: int = Field(default=20, ge=1, le=20)
 
 
 def load_script_module(filename: str, module_name: str):
@@ -92,6 +108,18 @@ def unique_upload_path(folder: Path, filename: str) -> Path:
         candidate = folder / f"{Path(safe_name).stem}_{index}{Path(safe_name).suffix}"
         index += 1
     return candidate
+
+
+async def read_upload_with_limit(file: UploadFile) -> bytes:
+    content = bytearray()
+    while chunk := await file.read(1024 * 1024):
+        content.extend(chunk)
+        if len(content) > MAX_UPLOAD_SIZE:
+            raise HTTPException(
+                status_code=413,
+                detail="Audio file is larger than 50MB.",
+            )
+    return bytes(content)
 
 
 def clean_tag_value(value: Any) -> str:
@@ -190,16 +218,7 @@ def append_personal_feature(row: dict[str, Any]) -> None:
 
 
 def update_personal_tracks(metadata: dict[str, str]) -> None:
-    columns = [
-        "filename",
-        "title",
-        "artist",
-        "album",
-        "genre",
-        "year",
-        "source_method",
-        "confidence",
-    ]
+    columns = PERSONAL_TRACK_COLUMNS
     if PERSONAL_TRACKS_PATH.exists():
         frame = pd.read_csv(PERSONAL_TRACKS_PATH)
     else:
@@ -221,6 +240,147 @@ def update_personal_tracks(metadata: dict[str, str]) -> None:
     frame = pd.concat([frame[columns], pd.DataFrame([row])], ignore_index=True)
     PERSONAL_TRACKS_PATH.parent.mkdir(parents=True, exist_ok=True)
     frame.to_csv(PERSONAL_TRACKS_PATH, index=False, encoding="utf-8-sig")
+
+
+def read_personal_features() -> pd.DataFrame:
+    if not PERSONAL_FEATURES_PATH.exists():
+        return pd.DataFrame(columns=FEATURE_COLUMNS)
+    try:
+        return normalize_feature_frame(pd.read_csv(PERSONAL_FEATURES_PATH))
+    except pd.errors.EmptyDataError:
+        return pd.DataFrame(columns=FEATURE_COLUMNS)
+
+
+def read_personal_tracks() -> pd.DataFrame:
+    if not PERSONAL_TRACKS_PATH.exists():
+        return pd.DataFrame(columns=PERSONAL_TRACK_COLUMNS)
+    try:
+        frame = pd.read_csv(PERSONAL_TRACKS_PATH)
+    except pd.errors.EmptyDataError:
+        frame = pd.DataFrame(columns=PERSONAL_TRACK_COLUMNS)
+    for column in PERSONAL_TRACK_COLUMNS:
+        if column not in frame.columns:
+            frame[column] = ""
+    return frame[PERSONAL_TRACK_COLUMNS]
+
+
+def safe_personal_audio_path(filename: str) -> Path:
+    audio_path = (PERSONAL_AUDIO_DIR / Path(filename).name).resolve()
+    try:
+        audio_path.relative_to(PERSONAL_AUDIO_DIR.resolve())
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail="Invalid personal audio path.") from exc
+    return audio_path
+
+
+def snapshot_files(paths: list[Path]) -> dict[Path, bytes | None]:
+    return {path: path.read_bytes() if path.exists() else None for path in paths}
+
+
+def restore_files(snapshot: dict[Path, bytes | None]) -> None:
+    for path, content in snapshot.items():
+        if content is None:
+            path.unlink(missing_ok=True)
+        else:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(content)
+
+
+def build_personal_export() -> tuple[Path, int]:
+    ensure_directories()
+    features = read_personal_features()
+    personal_count = len(features)
+    handle = tempfile.NamedTemporaryFile(
+        prefix="music-galaxy-personal-",
+        suffix=".zip",
+        delete=False,
+    )
+    export_path = Path(handle.name)
+    handle.close()
+
+    manifest = {
+        "schema_version": 1,
+        "exported_at": datetime.now().astimezone().isoformat(),
+        "personal_count": personal_count,
+        "contains_private_local_data": True,
+    }
+    with zipfile.ZipFile(export_path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr("manifest.json", json.dumps(manifest, ensure_ascii=False, indent=2))
+        for path, archive_name in (
+            (PERSONAL_FEATURES_PATH, "personal_features.csv"),
+            (PERSONAL_TRACKS_PATH, "personal_tracks.csv"),
+            (PENDING_PATH, "pending_personal_uploads.json"),
+        ):
+            if path.exists():
+                archive.write(path, archive_name)
+        if PERSONAL_AUDIO_DIR.exists():
+            for audio_path in sorted(PERSONAL_AUDIO_DIR.iterdir()):
+                if audio_path.is_file() and audio_path.suffix.lower() in AUDIO_EXTENSIONS:
+                    archive.write(audio_path, f"audios/{audio_path.name}")
+    return export_path, personal_count
+
+
+def remove_personal_data(personal_id: str | None = None) -> dict[str, int]:
+    features = read_personal_features()
+    personal_mask = features["source"].astype(str).eq("personal")
+    if personal_id is not None:
+        remove_mask = personal_mask & features["id"].astype(str).eq(personal_id)
+        if not remove_mask.any():
+            raise HTTPException(status_code=404, detail="Personal track not found.")
+    else:
+        remove_mask = personal_mask
+
+    removed = features.loc[remove_mask]
+    filenames = {
+        Path(str(filename)).name
+        for filename in removed["filename"].tolist()
+        if str(filename).strip()
+    }
+    tracks = read_personal_tracks()
+    pending = load_pending_uploads()
+    if personal_id is None:
+        filenames.update(
+            Path(str(filename)).name
+            for filename in tracks["filename"].tolist()
+            if str(filename).strip()
+        )
+        filenames.update(
+            Path(str(record.get("metadata", {}).get("filename", ""))).name
+            for record in pending.values()
+            if record.get("metadata", {}).get("filename")
+        )
+        if PERSONAL_AUDIO_DIR.exists():
+            filenames.update(
+                path.name
+                for path in PERSONAL_AUDIO_DIR.iterdir()
+                if path.is_file() and path.suffix.lower() in AUDIO_EXTENSIONS
+            )
+
+    remaining_features = features.loc[~remove_mask].reset_index(drop=True)
+    remaining_tracks = tracks.loc[~tracks["filename"].astype(str).isin(filenames)].reset_index(drop=True)
+    transaction_paths = [
+        PERSONAL_FEATURES_PATH,
+        PERSONAL_TRACKS_PATH,
+        PENDING_PATH,
+        PROCESSED_DIR / "music_features_all.csv",
+        PROCESSED_DIR / "music_graph.json",
+        GRAPH_PATH,
+    ]
+    snapshot = snapshot_files(transaction_paths)
+    try:
+        write_csv(remaining_features, PERSONAL_FEATURES_PATH)
+        PERSONAL_TRACKS_PATH.parent.mkdir(parents=True, exist_ok=True)
+        remaining_tracks.to_csv(PERSONAL_TRACKS_PATH, index=False, encoding="utf-8-sig")
+        if personal_id is None:
+            save_pending_uploads({})
+        stats = rebuild_graph(top_k=20)
+    except Exception:
+        restore_files(snapshot)
+        raise
+
+    for filename in filenames:
+        safe_personal_audio_path(filename).unlink(missing_ok=True)
+    return {**stats, "removed_count": int(remove_mask.sum())}
 
 
 def choose_sources() -> list[str]:
@@ -279,9 +439,7 @@ async def upload_personal(file: UploadFile = File(...)) -> dict[str, Any]:
     if suffix not in AUDIO_EXTENSIONS:
         raise HTTPException(status_code=400, detail="Unsupported audio file type.")
 
-    content = await file.read()
-    if len(content) > MAX_UPLOAD_SIZE:
-        raise HTTPException(status_code=413, detail="Audio file is larger than 50MB.")
+    content = await read_upload_with_limit(file)
 
     upload_path = unique_upload_path(PERSONAL_AUDIO_DIR, file.filename or f"uploaded{suffix}")
     upload_path.write_bytes(content)
@@ -339,10 +497,54 @@ def confirm_personal_genre(payload: ConfirmGenreRequest) -> dict[str, Any]:
     return {"ok": True, "message": "Personal song added to Music Galaxy.", "stats": stats}
 
 
+@app.delete("/api/pending-personal/{temp_id}")
+def cancel_pending_personal(temp_id: str) -> dict[str, Any]:
+    pending = load_pending_uploads()
+    record = pending.get(temp_id)
+    if not record:
+        raise HTTPException(status_code=404, detail="Pending upload not found.")
+    filename = Path(record.get("metadata", {}).get("filename", "")).name
+    if filename:
+        audio_path = (PERSONAL_AUDIO_DIR / filename).resolve()
+        try:
+            audio_path.relative_to(PERSONAL_AUDIO_DIR.resolve())
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail="Invalid pending audio path.") from exc
+        audio_path.unlink(missing_ok=True)
+
+    pending.pop(temp_id, None)
+    save_pending_uploads(pending)
+    return {"ok": True, "message": "Pending upload removed."}
+
+
+@app.get("/api/personal/export")
+def export_personal_data() -> FileResponse:
+    export_path, personal_count = build_personal_export()
+    filename = f"music-galaxy-personal-{datetime.now().strftime('%Y%m%d-%H%M%S')}.zip"
+    return FileResponse(
+        export_path,
+        media_type="application/zip",
+        filename=filename,
+        background=BackgroundTask(export_path.unlink, missing_ok=True),
+        headers={"X-Personal-Track-Count": str(personal_count)},
+    )
+
+
+@app.delete("/api/personal/{personal_id}")
+def delete_personal_track(personal_id: str) -> dict[str, Any]:
+    stats = remove_personal_data(personal_id)
+    return {"ok": True, "message": "Personal track removed.", "stats": stats}
+
+
+@app.post("/api/personal/reset")
+def reset_personal_data() -> dict[str, Any]:
+    stats = remove_personal_data()
+    return {"ok": True, "message": "Personal data reset.", "stats": stats}
+
+
 @app.post("/api/rebuild-graph")
 def rebuild_graph_api(payload: RebuildGraphRequest) -> dict[str, Any]:
-    top_k = min(max(int(payload.top_k or 20), 1), 20)
-    stats = rebuild_graph(sources=payload.sources, top_k=top_k)
+    stats = rebuild_graph(sources=payload.sources, top_k=payload.top_k)
     return {"ok": True, "stats": stats}
 
 

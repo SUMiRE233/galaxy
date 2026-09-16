@@ -213,6 +213,23 @@ button:hover {
   font-size: 14px;
 }
 
+.personal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.danger-button {
+  border-color: rgba(255, 105, 130, 0.45);
+  color: #ff9aae;
+}
+
+.danger-button:hover {
+  border-color: #ff6685;
+  background: rgba(116, 26, 48, 0.45);
+}
+
 .upload-dropzone p {
   margin: 0;
   color: var(--muted);

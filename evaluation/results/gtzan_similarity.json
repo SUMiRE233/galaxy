@@ -1,0 +1,44 @@
+{
+  "run_id": "similarity_20260916T004652Z",
+  "timestamp": "2026-09-16T00:46:52.720183+00:00",
+  "git": {
+    "commit": "68d42f10af9fa32389dcb8278a292fd9957340e6",
+    "dirty": true
+  },
+  "dataset": {
+    "path": "data\\processed\\gtzan_features.csv",
+    "sha256": "0e90e8b1c21e849048b067f80b35008eb130a90af4f0741c9d904b46e86263fd",
+    "usage": "frozen_evaluation_only"
+  },
+  "config": {
+    "top_k": 5,
+    "seed": 42
+  },
+  "result": {
+    "tracks": 999,
+    "top_k": 5,
+    "genres": 10,
+    "sources": [
+      "gtzan"
+    ],
+    "metrics_are_proxy_only": true,
+    "methods": {
+      "standardized_cosine": {
+        "same_genre_precision_at_k": 0.498298,
+        "same_genre_ndcg_at_k": 0.516958,
+        "cross_source_rate_at_k": 0.0
+      },
+      "unscaled_cosine": {
+        "same_genre_precision_at_k": 0.361161,
+        "same_genre_ndcg_at_k": 0.379144,
+        "cross_source_rate_at_k": 0.0
+      },
+      "random": {
+        "same_genre_precision_at_k": 0.100701,
+        "same_genre_ndcg_at_k": 0.101479,
+        "cross_source_rate_at_k": 0.0
+      }
+    }
+  },
+  "limitation": "Same-genre metrics are structural proxies, not subjective similarity ground truth."
+}

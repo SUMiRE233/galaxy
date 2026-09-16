@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import Iterable
 
@@ -45,7 +46,6 @@ AUDIO_EXTENSIONS = {".mp3", ".wav", ".flac", ".ogg", ".m4a", ".aac"}
 def ensure_directories() -> None:
     for path in (
         RAW_DIR / "personal" / "audios",
-        RAW_DIR / "fma_small",
         PROCESSED_DIR,
         WEB_DIR,
     ):
@@ -102,6 +102,9 @@ def find_audio_files(folder: Path) -> list[Path]:
 
 
 def extract_audio_features(audio_path: Path, duration: float = 30.0) -> dict[str, float]:
+    numba_cache_dir = DATA_DIR / "cache" / "numba"
+    numba_cache_dir.mkdir(parents=True, exist_ok=True)
+    os.environ.setdefault("NUMBA_CACHE_DIR", str(numba_cache_dir))
     try:
         import librosa
     except ImportError as exc:
@@ -135,7 +138,11 @@ def extract_audio_features(audio_path: Path, duration: float = 30.0) -> dict[str
 def write_csv(frame: pd.DataFrame, output_path: Path) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     normalize_feature_frame(frame).to_csv(output_path, index=False, encoding="utf-8-sig")
-    print(f"已生成: {output_path.relative_to(PROJECT_ROOT)} ({len(frame)} 首)")
+    try:
+        display_path = output_path.relative_to(PROJECT_ROOT)
+    except ValueError:
+        display_path = output_path
+    print(f"已生成: {display_path} ({len(frame)} 首)")
 
 
 def first_nonempty(values: Iterable[object], default: str) -> str:

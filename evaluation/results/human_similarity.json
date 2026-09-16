@@ -1,0 +1,133 @@
+{
+  "run_id": "human_similarity_20260916T124801Z",
+  "timestamp": "2026-09-16T12:48:01.163024+00:00",
+  "git": {
+    "commit": "68d42f10af9fa32389dcb8278a292fd9957340e6",
+    "dirty": true
+  },
+  "inputs": {
+    "package_manifest_sha256": "fb56cff7deb69007f73815298782463b54199ed70685df7a466caca70eb661a2",
+    "retrieval_key_sha256": "d663612b702042783bda83b10962bcfae40b4d35d4c7645b4e0f8fe8b8d92757",
+    "labels_sha256": "671d2f35ab855ef4ee0a24de968d7674162ef6a09a6c49797aeb28b29c164e3a"
+  },
+  "result": {
+    "primary_metric": "standardized_cosine.precision_at_k_valid_labels",
+    "primary_metric_ready": true,
+    "unique_pairs": 60,
+    "labeled_pairs": 60,
+    "pair_label_coverage": 1.0,
+    "agreement": {
+      "multi_annotator_pairs": 0,
+      "raw_unanimous_agreement": null,
+      "unresolved_disagreements": 0
+    },
+    "methods": {
+      "random": {
+        "retrieval_rows": 30,
+        "valid_labeled_rows": 30,
+        "valid_label_coverage": 1.0,
+        "precision_at_k_valid_labels": 0.2,
+        "mean_query_precision_on_valid_labels": 0.2,
+        "complete_queries": 10,
+        "complete_query_precision_at_k": 0.2,
+        "per_genre": {
+          "blues": {
+            "valid_pairs": 3,
+            "precision": 0.0
+          },
+          "classical": {
+            "valid_pairs": 3,
+            "precision": 0.0
+          },
+          "country": {
+            "valid_pairs": 3,
+            "precision": 0.333333
+          },
+          "disco": {
+            "valid_pairs": 3,
+            "precision": 0.333333
+          },
+          "hiphop": {
+            "valid_pairs": 3,
+            "precision": 0.0
+          },
+          "jazz": {
+            "valid_pairs": 3,
+            "precision": 0.0
+          },
+          "metal": {
+            "valid_pairs": 3,
+            "precision": 0.333333
+          },
+          "pop": {
+            "valid_pairs": 3,
+            "precision": 0.0
+          },
+          "reggae": {
+            "valid_pairs": 3,
+            "precision": 0.666667
+          },
+          "rock": {
+            "valid_pairs": 3,
+            "precision": 0.333333
+          }
+        }
+      },
+      "standardized_cosine": {
+        "retrieval_rows": 30,
+        "valid_labeled_rows": 30,
+        "valid_label_coverage": 1.0,
+        "precision_at_k_valid_labels": 0.733333,
+        "mean_query_precision_on_valid_labels": 0.733333,
+        "complete_queries": 10,
+        "complete_query_precision_at_k": 0.733333,
+        "per_genre": {
+          "blues": {
+            "valid_pairs": 3,
+            "precision": 0.0
+          },
+          "classical": {
+            "valid_pairs": 3,
+            "precision": 1.0
+          },
+          "country": {
+            "valid_pairs": 3,
+            "precision": 1.0
+          },
+          "disco": {
+            "valid_pairs": 3,
+            "precision": 1.0
+          },
+          "hiphop": {
+            "valid_pairs": 3,
+            "precision": 0.0
+          },
+          "jazz": {
+            "valid_pairs": 3,
+            "precision": 1.0
+          },
+          "metal": {
+            "valid_pairs": 3,
+            "precision": 0.666667
+          },
+          "pop": {
+            "valid_pairs": 3,
+            "precision": 1.0
+          },
+          "reggae": {
+            "valid_pairs": 3,
+            "precision": 1.0
+          },
+          "rock": {
+            "valid_pairs": 3,
+            "precision": 0.666667
+          }
+        }
+      }
+    },
+    "limitations": [
+      "NA labels are excluded from precision denominators.",
+      "A final claim requires all pairs labeled and all disagreements adjudicated."
+    ]
+  }
+}

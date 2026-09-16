@@ -35,7 +35,6 @@
           <option value="all">全部来源</option>
           <option value="demo">Demo</option>
           <option value="personal">Personal</option>
-          <option value="fma">FMA</option>
           <option value="gtzan">GTZAN</option>
         </select>
       </label>
@@ -58,7 +57,11 @@
           <p id="upload-status" class="upload-status"></p>
         </div>
         <input id="audio-upload-input" type="file" accept="audio/*" hidden>
-        <button id="choose-audio-button" type="button">选择音频文件</button>
+        <div class="personal-actions">
+          <button id="choose-audio-button" type="button">选择音频文件</button>
+          <button id="export-personal-button" type="button">导出个人数据</button>
+          <button id="reset-personal-button" type="button" class="danger-button">恢复初始化</button>
+        </div>
       </div>
     </section>
 
@@ -81,6 +84,9 @@
           </div>
           <h2 id="detail-title"></h2>
           <p id="detail-artist" class="artist"></p>
+          <button id="delete-personal-button" type="button" class="danger-button hidden">
+            删除个人节点
+          </button>
           <div class="player-bar hidden" id="player-bar">
             <button id="btn-play" class="btn-play" title="Play / Pause">&#9654;</button>
             <div class="player-wave" id="player-wave"></div>
@@ -156,6 +162,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+  <script src="graph_utils.js"></script>
   <script src="app.js?v=player-1"></script>
 </body>
 </html>

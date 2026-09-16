@@ -1,6 +1,14 @@
-# Data files
-data/*
+# Local and generated data. Only explicit public fixtures belong in Git.
+data/**
 !data/**/.gitkeep
+!data/examples/
+!data/examples/**
+
+# Generated browser graph. Build it locally from a public fixture.
+web/music_graph.json
+
+# Human annotations may contain evaluator identities or free-form notes.
+evaluation/local_annotations/
 
 # Python
 __pycache__/

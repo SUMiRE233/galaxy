@@ -1,0 +1,57 @@
+{
+  "run_id": "benchmark_20260915T103938Z",
+  "timestamp": "2026-09-15T10:39:38.899586+00:00",
+  "git": {
+    "commit": "68d42f10af9fa32389dcb8278a292fd9957340e6",
+    "dirty": true
+  },
+  "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:05:56) [MSC v.1942 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "config": {
+    "sizes": [
+      100,
+      1000,
+      5000
+    ],
+    "top_k": 20,
+    "seed": 42
+  },
+  "results": [
+    {
+      "songs": 100,
+      "top_k": 20,
+      "nodes": 100,
+      "links": 1270,
+      "elapsed_seconds": 0.3132,
+      "baseline_rss_mib": 137.88,
+      "peak_rss_mib": 142.21,
+      "rss_increase_mib": 4.33,
+      "similarity_matrix_estimate_mib": 0.08,
+      "graph_json_mib": 0.32
+    },
+    {
+      "songs": 1000,
+      "top_k": 20,
+      "nodes": 1000,
+      "links": 14587,
+      "elapsed_seconds": 3.2729,
+      "baseline_rss_mib": 142.2,
+      "peak_rss_mib": 162.62,
+      "rss_increase_mib": 20.43,
+      "similarity_matrix_estimate_mib": 7.63,
+      "graph_json_mib": 3.29
+    },
+    {
+      "songs": 5000,
+      "top_k": 20,
+      "nodes": 5000,
+      "links": 74327,
+      "elapsed_seconds": 16.2944,
+      "baseline_rss_mib": 147.63,
+      "peak_rss_mib": 403.42,
+      "rss_increase_mib": 255.79,
+      "similarity_matrix_estimate_mib": 190.73,
+      "graph_json_mib": 16.74
+    }
+  ]
+}

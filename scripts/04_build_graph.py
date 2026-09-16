@@ -20,9 +20,31 @@ def clean_number(value: object, fallback: float = 0.0) -> float:
         return fallback
 
 
-def build_graph(frame: pd.DataFrame, top_k: int = 5) -> dict:
+def validate_graph_input(frame: pd.DataFrame, top_k: int) -> None:
     if len(frame) < 2:
         raise ValueError("至少需要两首歌曲才能构建相似关系图。")
+    if top_k < 1:
+        raise ValueError("top_k 必须大于等于 1。")
+
+    required_columns = {"id", "genre", *NUMERIC_FEATURE_COLUMNS}
+    missing = sorted(required_columns - set(frame.columns))
+    if missing:
+        raise ValueError(f"输入特征缺少必要字段: {missing}")
+
+    ids = frame["id"].astype(str)
+    if ids.str.strip().eq("").any():
+        raise ValueError("歌曲 ID 不能为空。")
+    if ids.duplicated().any():
+        duplicates = sorted(ids[ids.duplicated(keep=False)].unique())
+        raise ValueError(f"歌曲 ID 必须唯一，重复值: {duplicates[:5]}")
+
+
+def build_graph(frame: pd.DataFrame, top_k: int = 5) -> dict:
+    validate_graph_input(frame, top_k)
+    frame = frame.reset_index(drop=True).copy()
+    frame["genre"] = (
+        frame["genre"].fillna("").astype(str).str.strip().replace("", "Unknown")
+    )
 
     numeric = frame[NUMERIC_FEATURE_COLUMNS].apply(pd.to_numeric, errors="coerce")
     numeric = numeric.fillna(numeric.median()).fillna(0.0)
@@ -30,7 +52,7 @@ def build_graph(frame: pd.DataFrame, top_k: int = 5) -> dict:
     similarity = cosine_similarity(scaled)
     np.fill_diagonal(similarity, -1.0)
 
-    genres = sorted(frame["genre"].fillna("Unknown").astype(str).unique())
+    genres = sorted(frame["genre"].unique())
     genre_index = {genre: index for index, genre in enumerate(genres)}
     rms_values = numeric["rms"].to_numpy()
     rms_min, rms_max = float(rms_values.min()), float(rms_values.max())
@@ -40,8 +62,8 @@ def build_graph(frame: pd.DataFrame, top_k: int = 5) -> dict:
         return round(12 + normalized * 17 + (5 if personal else 0), 2)
 
     nodes = []
-    for index, row in frame.iterrows():
-        genre = str(row.get("genre") or "Unknown")
+    for _, row in frame.iterrows():
+        genre = str(row["genre"])
         personal = str(row.get("source")) == "personal"
         rms = clean_number(row.get("rms"))
         nodes.append(

@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "purpose": "frozen_blinded_human_similarity_evaluation",
+  "config": {
+    "query_count": 10,
+    "top_k": 3,
+    "seed": 42,
+    "methods": [
+      "standardized_cosine",
+      "random"
+    ]
+  },
+  "counts": {
+    "tracks": 999,
+    "queries": 10,
+    "retrieval_rows": 60,
+    "unique_pairs_to_label": 60
+  },
+  "query_genre_distribution": {
+    "blues": 1,
+    "classical": 1,
+    "country": 1,
+    "disco": 1,
+    "hiphop": 1,
+    "jazz": 1,
+    "metal": 1,
+    "pop": 1,
+    "reggae": 1,
+    "rock": 1
+  },
+  "blinding": {
+    "annotation_file_contains_method": false,
+    "annotation_file_contains_track_ids": false,
+    "playback_index_must_not_be_shown_to_annotators": true
+  },
+  "frozen_at": "2026-09-16T12:11:39.739702+00:00",
+  "git": {
+    "commit": "68d42f10af9fa32389dcb8278a292fd9957340e6",
+    "dirty": true
+  },
+  "dataset": {
+    "path": "data\\processed\\gtzan_features.csv",
+    "sha256": "0e90e8b1c21e849048b067f80b35008eb130a90af4f0741c9d904b46e86263fd",
+    "usage": "frozen_final_evaluation_only"
+  },
+  "generator": {
+    "path": "scripts/10_freeze_human_evaluation.py",
+    "sha256": "d47398efb896d767f5ee6cb372209800392e66938a8a80a44d4a29a30345721e"
+  },
+  "environment": {
+    "python": "3.13.12",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scikit_learn": "1.9.1"
+  },
+  "artifacts": {
+    "pairs": {
+      "path": "pairs.csv",
+      "sha256": "99eb7fa7e21e094faa214a9273cdaf10ef825b5f1be617734d2975951cf88396"
+    },
+    "playback_index": {
+      "path": "playback_index.csv",
+      "sha256": "a218a3605dbc950ebe2cdbf0d30c0cad6c5d731772450013b4ee099c6757a6fa"
+    },
+    "retrieval_key": {
+      "path": "retrieval_key.csv",
+      "sha256": "d663612b702042783bda83b10962bcfae40b4d35d4c7645b4e0f8fe8b8d92757"
+    },
+    "labels_template": {
+      "path": "labels_template.csv",
+      "sha256": "912baa5c20edcb2e30cd2efacbd0579731c6e977b412d76be83acd70defb22b3"
+    }
+  }
+}

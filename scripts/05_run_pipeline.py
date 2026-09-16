@@ -23,8 +23,12 @@ def has_personal_data() -> bool:
     )
 
 
-def has_fma_data() -> bool:
-    return bool(find_audio_files(RAW_DIR / "fma_small"))
+def has_gtzan_data() -> bool:
+    gtzan_root = RAW_DIR / "gtzan"
+    return bool(find_audio_files(gtzan_root)) or any(
+        (gtzan_root / filename).exists()
+        for filename in ("features_30_sec.csv", "features_3_sec.csv")
+    )
 
 
 def main() -> None:
@@ -32,7 +36,7 @@ def main() -> None:
     parser.add_argument("--mode", choices=["demo", "personal", "all"], default="demo")
     parser.add_argument("--demo-count", type=int, default=120)
     parser.add_argument("--top-k", type=int, default=20, choices=range(1, 21))
-    parser.add_argument("--limit", type=int, default=None, help="限制 personal/FMA 处理数量")
+    parser.add_argument("--limit", type=int, default=None, help="限制 personal/GTZAN 处理数量")
     args = parser.parse_args()
     ensure_directories()
 
@@ -54,11 +58,11 @@ def main() -> None:
                 sources.append("demo")
 
     if args.mode == "all":
-        if has_fma_data():
-            run_script("02_extract_fma_features.py", *limit_args)
-            sources.append("fma")
+        if has_gtzan_data():
+            run_script("06_import_gtzan_features.py", *limit_args)
+            sources.append("gtzan")
         else:
-            print("\n提示: 未发现 FMA small 音频，已跳过。")
+            print("\n提示: 未发现 GTZAN 音频或兼容特征 CSV，已跳过。")
 
     run_script("03_merge_features.py", "--sources", *sources)
     run_script("04_build_graph.py", "--top-k", str(args.top_k))

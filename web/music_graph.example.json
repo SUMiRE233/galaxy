@@ -1,0 +1,2129 @@
+{
+  "nodes": [
+    {
+      "id": "demo_000",
+      "name": "Crystal Voyage",
+      "title": "Crystal Voyage",
+      "artist": "Aster Club",
+      "genre": "Pop",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 6,
+      "symbolSize": 21.24,
+      "tempo": 110.27,
+      "energy": 0.1892,
+      "rms": 0.1892,
+      "zcr": 0.0635,
+      "spectral_centroid": 2678.4
+    },
+    {
+      "id": "demo_001",
+      "name": "Electric Lights",
+      "title": "Electric Lights",
+      "artist": "Glass Harbor",
+      "genre": "Rock",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 7,
+      "symbolSize": 27.06,
+      "tempo": 137.54,
+      "energy": 0.2682,
+      "rms": 0.2682,
+      "zcr": 0.0936,
+      "spectral_centroid": 2631.56
+    },
+    {
+      "id": "demo_002",
+      "name": "Electric Garden",
+      "title": "Electric Garden",
+      "artist": "Mira Chen",
+      "genre": "Electronic",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 1,
+      "symbolSize": 22.33,
+      "tempo": 121.77,
+      "energy": 0.204,
+      "rms": 0.204,
+      "zcr": 0.0817,
+      "spectral_centroid": 3538.68
+    },
+    {
+      "id": "demo_003",
+      "name": "Northern Voyage",
+      "title": "Northern Voyage",
+      "artist": "Nova Lane",
+      "genre": "Folk",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 2,
+      "symbolSize": 17.14,
+      "tempo": 106.47,
+      "energy": 0.1336,
+      "rms": 0.1336,
+      "zcr": 0.0633,
+      "spectral_centroid": 1788.91
+    },
+    {
+      "id": "demo_004",
+      "name": "Echo Orbit",
+      "title": "Echo Orbit",
+      "artist": "Mira Chen",
+      "genre": "Hip-Hop",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 3,
+      "symbolSize": 19.66,
+      "tempo": 91.28,
+      "energy": 0.1678,
+      "rms": 0.1678,
+      "zcr": 0.0526,
+      "spectral_centroid": 1906.1
+    },
+    {
+      "id": "demo_005",
+      "name": "Velvet Voyage",
+      "title": "Velvet Voyage",
+      "artist": "Aster Club",
+      "genre": "Classical",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 0,
+      "symbolSize": 12.0,
+      "tempo": 76.65,
+      "energy": 0.0638,
+      "rms": 0.0638,
+      "zcr": 0.0409,
+      "spectral_centroid": 1312.33
+    },
+    {
+      "id": "demo_006",
+      "name": "Blue Fire",
+      "title": "Blue Fire",
+      "artist": "Low Gravity",
+      "genre": "Jazz",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 4,
+      "symbolSize": 17.94,
+      "tempo": 115.72,
+      "energy": 0.1444,
+      "rms": 0.1444,
+      "zcr": 0.0424,
+      "spectral_centroid": 1785.95
+    },
+    {
+      "id": "demo_007",
+      "name": "Velvet Horizon",
+      "title": "Velvet Horizon",
+      "artist": "The Satellites",
+      "genre": "Metal",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 5,
+      "symbolSize": 24.84,
+      "tempo": 140.68,
+      "energy": 0.2381,
+      "rms": 0.2381,
+      "zcr": 0.1092,
+      "spectral_centroid": 3436.02
+    },
+    {
+      "id": "demo_008",
+      "name": "Distant Signal",
+      "title": "Distant Signal",
+      "artist": "Mono Bloom",
+      "genre": "Pop",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 6,
+      "symbolSize": 19.72,
+      "tempo": 122.01,
+      "energy": 0.1686,
+      "rms": 0.1686,
+      "zcr": 0.0603,
+      "spectral_centroid": 2117.74
+    },
+    {
+      "id": "demo_009",
+      "name": "Blue Skies",
+      "title": "Blue Skies",
+      "artist": "The Satellites",
+      "genre": "Rock",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 7,
+      "symbolSize": 24.65,
+      "tempo": 147.51,
+      "energy": 0.2355,
+      "rms": 0.2355,
+      "zcr": 0.0904,
+      "spectral_centroid": 3229.98
+    },
+    {
+      "id": "demo_010",
+      "name": "Crystal Dream",
+      "title": "Crystal Dream",
+      "artist": "Paper Comets",
+      "genre": "Electronic",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 1,
+      "symbolSize": 21.06,
+      "tempo": 134.24,
+      "energy": 0.1868,
+      "rms": 0.1868,
+      "zcr": 0.0854,
+      "spectral_centroid": 3024.12
+    },
+    {
+      "id": "demo_011",
+      "name": "Lunar Dream",
+      "title": "Lunar Dream",
+      "artist": "Mono Bloom",
+      "genre": "Folk",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 2,
+      "symbolSize": 14.18,
+      "tempo": 99.41,
+      "energy": 0.0934,
+      "rms": 0.0934,
+      "zcr": 0.0479,
+      "spectral_centroid": 1982.06
+    },
+    {
+      "id": "demo_012",
+      "name": "Lunar Voyage",
+      "title": "Lunar Voyage",
+      "artist": "Mono Bloom",
+      "genre": "Hip-Hop",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 3,
+      "symbolSize": 22.09,
+      "tempo": 81.46,
+      "energy": 0.2008,
+      "rms": 0.2008,
+      "zcr": 0.0741,
+      "spectral_centroid": 2699.46
+    },
+    {
+      "id": "demo_013",
+      "name": "Midnight Voyage",
+      "title": "Midnight Voyage",
+      "artist": "Glass Harbor",
+      "genre": "Classical",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 0,
+      "symbolSize": 14.66,
+      "tempo": 82.48,
+      "energy": 0.1,
+      "rms": 0.1,
+      "zcr": 0.0313,
+      "spectral_centroid": 1532.29
+    },
+    {
+      "id": "demo_014",
+      "name": "Golden Static",
+      "title": "Golden Static",
+      "artist": "Night Circuit",
+      "genre": "Jazz",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 4,
+      "symbolSize": 18.16,
+      "tempo": 107.37,
+      "energy": 0.1474,
+      "rms": 0.1474,
+      "zcr": 0.057,
+      "spectral_centroid": 2089.67
+    },
+    {
+      "id": "demo_015",
+      "name": "Golden Signal",
+      "title": "Golden Signal",
+      "artist": "Mira Chen",
+      "genre": "Metal",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 5,
+      "symbolSize": 29.0,
+      "tempo": 161.7,
+      "energy": 0.2946,
+      "rms": 0.2946,
+      "zcr": 0.1358,
+      "spectral_centroid": 3756.13
+    },
+    {
+      "id": "demo_016",
+      "name": "Golden Pulse",
+      "title": "Golden Pulse",
+      "artist": "Aster Club",
+      "genre": "Pop",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 6,
+      "symbolSize": 18.4,
+      "tempo": 117.4,
+      "energy": 0.1507,
+      "rms": 0.1507,
+      "zcr": 0.0688,
+      "spectral_centroid": 2842.92
+    },
+    {
+      "id": "demo_017",
+      "name": "Blue Signal",
+      "title": "Blue Signal",
+      "artist": "Aster Club",
+      "genre": "Rock",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 7,
+      "symbolSize": 26.07,
+      "tempo": 126.68,
+      "energy": 0.2548,
+      "rms": 0.2548,
+      "zcr": 0.076,
+      "spectral_centroid": 3233.75
+    },
+    {
+      "id": "demo_018",
+      "name": "Northern Orbit",
+      "title": "Northern Orbit",
+      "artist": "The Satellites",
+      "genre": "Electronic",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 1,
+      "symbolSize": 21.99,
+      "tempo": 119.31,
+      "energy": 0.1994,
+      "rms": 0.1994,
+      "zcr": 0.0874,
+      "spectral_centroid": 3369.54
+    },
+    {
+      "id": "demo_019",
+      "name": "Northern Rain",
+      "title": "Northern Rain",
+      "artist": "Low Gravity",
+      "genre": "Folk",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 2,
+      "symbolSize": 17.68,
+      "tempo": 94.85,
+      "energy": 0.141,
+      "rms": 0.141,
+      "zcr": 0.0613,
+      "spectral_centroid": 1971.83
+    },
+    {
+      "id": "demo_020",
+      "name": "Neon Lights",
+      "title": "Neon Lights",
+      "artist": "Mira Chen",
+      "genre": "Hip-Hop",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 3,
+      "symbolSize": 22.55,
+      "tempo": 89.61,
+      "energy": 0.2071,
+      "rms": 0.2071,
+      "zcr": 0.08,
+      "spectral_centroid": 1731.8
+    },
+    {
+      "id": "demo_021",
+      "name": "Parallel Voyage",
+      "title": "Parallel Voyage",
+      "artist": "June Atlas",
+      "genre": "Classical",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 0,
+      "symbolSize": 14.0,
+      "tempo": 74.01,
+      "energy": 0.091,
+      "rms": 0.091,
+      "zcr": 0.0496,
+      "spectral_centroid": 1897.4
+    },
+    {
+      "id": "demo_022",
+      "name": "Electric Dream",
+      "title": "Electric Dream",
+      "artist": "Mira Chen",
+      "genre": "Jazz",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 4,
+      "symbolSize": 15.63,
+      "tempo": 106.91,
+      "energy": 0.1131,
+      "rms": 0.1131,
+      "zcr": 0.0728,
+      "spectral_centroid": 1963.81
+    },
+    {
+      "id": "demo_023",
+      "name": "Blue Voyage",
+      "title": "Blue Voyage",
+      "artist": "Mira Chen",
+      "genre": "Metal",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 5,
+      "symbolSize": 25.87,
+      "tempo": 131.34,
+      "energy": 0.2521,
+      "rms": 0.2521,
+      "zcr": 0.1095,
+      "spectral_centroid": 3373.77
+    },
+    {
+      "id": "demo_024",
+      "name": "Lunar Static",
+      "title": "Lunar Static",
+      "artist": "Aster Club",
+      "genre": "Pop",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 6,
+      "symbolSize": 20.45,
+      "tempo": 123.23,
+      "energy": 0.1786,
+      "rms": 0.1786,
+      "zcr": 0.073,
+      "spectral_centroid": 2247.33
+    },
+    {
+      "id": "demo_025",
+      "name": "Distant Garden",
+      "title": "Distant Garden",
+      "artist": "The Satellites",
+      "genre": "Rock",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 7,
+      "symbolSize": 22.21,
+      "tempo": 125.52,
+      "energy": 0.2024,
+      "rms": 0.2024,
+      "zcr": 0.0594,
+      "spectral_centroid": 2708.69
+    },
+    {
+      "id": "demo_026",
+      "name": "Blue Horizon",
+      "title": "Blue Horizon",
+      "artist": "Mira Chen",
+      "genre": "Electronic",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 1,
+      "symbolSize": 23.15,
+      "tempo": 138.02,
+      "energy": 0.2152,
+      "rms": 0.2152,
+      "zcr": 0.1018,
+      "spectral_centroid": 3034.94
+    },
+    {
+      "id": "demo_027",
+      "name": "Lunar Signal",
+      "title": "Lunar Signal",
+      "artist": "Mira Chen",
+      "genre": "Folk",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 2,
+      "symbolSize": 17.33,
+      "tempo": 94.56,
+      "energy": 0.1362,
+      "rms": 0.1362,
+      "zcr": 0.0528,
+      "spectral_centroid": 1834.12
+    },
+    {
+      "id": "demo_028",
+      "name": "Golden Memory",
+      "title": "Golden Memory",
+      "artist": "Paper Comets",
+      "genre": "Hip-Hop",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 3,
+      "symbolSize": 22.64,
+      "tempo": 84.0,
+      "energy": 0.2082,
+      "rms": 0.2082,
+      "zcr": 0.074,
+      "spectral_centroid": 2263.3
+    },
+    {
+      "id": "demo_029",
+      "name": "Silent Lights",
+      "title": "Silent Lights",
+      "artist": "Low Gravity",
+      "genre": "Classical",
+      "source": "demo",
+      "path": "",
+      "isPersonal": false,
+      "category": 0,
+      "symbolSize": 15.33,
+      "tempo": 79.73,
+      "energy": 0.1091,
+      "rms": 0.1091,
+      "zcr": 0.0111,
+      "spectral_centroid": 1149.35
+    }
+  ],
+  "links": [
+    {
+      "source": "demo_000",
+      "target": "demo_024",
+      "value": 0.7917
+    },
+    {
+      "source": "demo_000",
+      "target": "demo_008",
+      "value": 0.7861
+    },
+    {
+      "source": "demo_000",
+      "target": "demo_016",
+      "value": 0.7654
+    },
+    {
+      "source": "demo_000",
+      "target": "demo_001",
+      "value": 0.603
+    },
+    {
+      "source": "demo_000",
+      "target": "demo_017",
+      "value": 0.5836
+    },
+    {
+      "source": "demo_001",
+      "target": "demo_009",
+      "value": 0.6116
+    },
+    {
+      "source": "demo_001",
+      "target": "demo_008",
+      "value": 0.5324
+    },
+    {
+      "source": "demo_001",
+      "target": "demo_017",
+      "value": 0.4839
+    },
+    {
+      "source": "demo_001",
+      "target": "demo_010",
+      "value": 0.479
+    },
+    {
+      "source": "demo_002",
+      "target": "demo_026",
+      "value": 0.8207
+    },
+    {
+      "source": "demo_002",
+      "target": "demo_017",
+      "value": 0.5621
+    },
+    {
+      "source": "demo_002",
+      "target": "demo_009",
+      "value": 0.5424
+    },
+    {
+      "source": "demo_002",
+      "target": "demo_018",
+      "value": 0.4826
+    },
+    {
+      "source": "demo_002",
+      "target": "demo_025",
+      "value": 0.4412
+    },
+    {
+      "source": "demo_003",
+      "target": "demo_021",
+      "value": 0.4817
+    },
+    {
+      "source": "demo_003",
+      "target": "demo_027",
+      "value": 0.4018
+    },
+    {
+      "source": "demo_003",
+      "target": "demo_005",
+      "value": 0.3946
+    },
+    {
+      "source": "demo_003",
+      "target": "demo_028",
+      "value": 0.3193
+    },
+    {
+      "source": "demo_003",
+      "target": "demo_019",
+      "value": 0.3039
+    },
+    {
+      "source": "demo_004",
+      "target": "demo_029",
+      "value": 0.742
+    },
+    {
+      "source": "demo_004",
+      "target": "demo_013",
+      "value": 0.699
+    },
+    {
+      "source": "demo_004",
+      "target": "demo_011",
+      "value": 0.6277
+    },
+    {
+      "source": "demo_004",
+      "target": "demo_005",
+      "value": 0.5857
+    },
+    {
+      "source": "demo_004",
+      "target": "demo_022",
+      "value": 0.4337
+    },
+    {
+      "source": "demo_005",
+      "target": "demo_029",
+      "value": 0.812
+    },
+    {
+      "source": "demo_005",
+      "target": "demo_021",
+      "value": 0.6697
+    },
+    {
+      "source": "demo_005",
+      "target": "demo_022",
+      "value": 0.6563
+    },
+    {
+      "source": "demo_005",
+      "target": "demo_013",
+      "value": 0.6296
+    },
+    {
+      "source": "demo_006",
+      "target": "demo_014",
+      "value": 0.705
+    },
+    {
+      "source": "demo_006",
+      "target": "demo_021",
+      "value": 0.5664
+    },
+    {
+      "source": "demo_006",
+      "target": "demo_013",
+      "value": 0.4974
+    },
+    {
+      "source": "demo_006",
+      "target": "demo_023",
+      "value": 0.4658
+    },
+    {
+      "source": "demo_006",
+      "target": "demo_022",
+      "value": 0.441
+    },
+    {
+      "source": "demo_007",
+      "target": "demo_023",
+      "value": 0.8017
+    },
+    {
+      "source": "demo_007",
+      "target": "demo_015",
+      "value": 0.7383
+    },
+    {
+      "source": "demo_007",
+      "target": "demo_014",
+      "value": 0.4342
+    },
+    {
+      "source": "demo_007",
+      "target": "demo_022",
+      "value": 0.393
+    },
+    {
+      "source": "demo_006",
+      "target": "demo_007",
+      "value": 0.3618
+    },
+    {
+      "source": "demo_008",
+      "target": "demo_024",
+      "value": 0.7723
+    },
+    {
+      "source": "demo_008",
+      "target": "demo_016",
+      "value": 0.7628
+    },
+    {
+      "source": "demo_008",
+      "target": "demo_010",
+      "value": 0.6337
+    },
+    {
+      "source": "demo_009",
+      "target": "demo_018",
+      "value": 0.5033
+    },
+    {
+      "source": "demo_009",
+      "target": "demo_010",
+      "value": 0.4711
+    },
+    {
+      "source": "demo_009",
+      "target": "demo_026",
+      "value": 0.3753
+    },
+    {
+      "source": "demo_010",
+      "target": "demo_018",
+      "value": 0.5369
+    },
+    {
+      "source": "demo_010",
+      "target": "demo_024",
+      "value": 0.4892
+    },
+    {
+      "source": "demo_011",
+      "target": "demo_013",
+      "value": 0.5865
+    },
+    {
+      "source": "demo_011",
+      "target": "demo_022",
+      "value": 0.4468
+    },
+    {
+      "source": "demo_011",
+      "target": "demo_029",
+      "value": 0.3789
+    },
+    {
+      "source": "demo_005",
+      "target": "demo_011",
+      "value": 0.3389
+    },
+    {
+      "source": "demo_012",
+      "target": "demo_019",
+      "value": 0.4025
+    },
+    {
+      "source": "demo_001",
+      "target": "demo_012",
+      "value": 0.3825
+    },
+    {
+      "source": "demo_000",
+      "target": "demo_012",
+      "value": 0.368
+    },
+    {
+      "source": "demo_012",
+      "target": "demo_027",
+      "value": 0.2516
+    },
+    {
+      "source": "demo_008",
+      "target": "demo_012",
+      "value": 0.2464
+    },
+    {
+      "source": "demo_013",
+      "target": "demo_029",
+      "value": 0.7658
+    },
+    {
+      "source": "demo_013",
+      "target": "demo_021",
+      "value": 0.5665
+    },
+    {
+      "source": "demo_014",
+      "target": "demo_022",
+      "value": 0.7533
+    },
+    {
+      "source": "demo_014",
+      "target": "demo_023",
+      "value": 0.5191
+    },
+    {
+      "source": "demo_005",
+      "target": "demo_014",
+      "value": 0.4951
+    },
+    {
+      "source": "demo_015",
+      "target": "demo_023",
+      "value": 0.8232
+    },
+    {
+      "source": "demo_002",
+      "target": "demo_015",
+      "value": 0.3382
+    },
+    {
+      "source": "demo_015",
+      "target": "demo_026",
+      "value": 0.2643
+    },
+    {
+      "source": "demo_006",
+      "target": "demo_015",
+      "value": 0.2546
+    },
+    {
+      "source": "demo_016",
+      "target": "demo_024",
+      "value": 0.7221
+    },
+    {
+      "source": "demo_016",
+      "target": "demo_017",
+      "value": 0.5226
+    },
+    {
+      "source": "demo_016",
+      "target": "demo_026",
+      "value": 0.4352
+    },
+    {
+      "source": "demo_017",
+      "target": "demo_025",
+      "value": 0.7311
+    },
+    {
+      "source": "demo_017",
+      "target": "demo_026",
+      "value": 0.5885
+    },
+    {
+      "source": "demo_018",
+      "target": "demo_024",
+      "value": 0.4974
+    },
+    {
+      "source": "demo_000",
+      "target": "demo_018",
+      "value": 0.4817
+    },
+    {
+      "source": "demo_005",
+      "target": "demo_019",
+      "value": 0.5062
+    },
+    {
+      "source": "demo_019",
+      "target": "demo_029",
+      "value": 0.4575
+    },
+    {
+      "source": "demo_004",
+      "target": "demo_019",
+      "value": 0.4053
+    },
+    {
+      "source": "demo_019",
+      "target": "demo_028",
+      "value": 0.3463
+    },
+    {
+      "source": "demo_020",
+      "target": "demo_021",
+      "value": 0.4279
+    },
+    {
+      "source": "demo_013",
+      "target": "demo_020",
+      "value": 0.3936
+    },
+    {
+      "source": "demo_020",
+      "target": "demo_029",
+      "value": 0.3202
+    },
+    {
+      "source": "demo_020",
+      "target": "demo_028",
+      "value": 0.3181
+    },
+    {
+      "source": "demo_006",
+      "target": "demo_020",
+      "value": 0.2863
+    },
+    {
+      "source": "demo_021",
+      "target": "demo_028",
+      "value": 0.5202
+    },
+    {
+      "source": "demo_022",
+      "target": "demo_029",
+      "value": 0.4841
+    },
+    {
+      "source": "demo_013",
+      "target": "demo_022",
+      "value": 0.464
+    },
+    {
+      "source": "demo_022",
+      "target": "demo_023",
+      "value": 0.3955
+    },
+    {
+      "source": "demo_000",
+      "target": "demo_025",
+      "value": 0.5017
+    },
+    {
+      "source": "demo_025",
+      "target": "demo_026",
+      "value": 0.4935
+    },
+    {
+      "source": "demo_016",
+      "target": "demo_025",
+      "value": 0.3706
+    },
+    {
+      "source": "demo_024",
+      "target": "demo_026",
+      "value": 0.4628
+    },
+    {
+      "source": "demo_005",
+      "target": "demo_027",
+      "value": 0.3934
+    },
+    {
+      "source": "demo_027",
+      "target": "demo_029",
+      "value": 0.3631
+    },
+    {
+      "source": "demo_008",
+      "target": "demo_027",
+      "value": 0.3626
+    },
+    {
+      "source": "demo_019",
+      "target": "demo_027",
+      "value": 0.3132
+    },
+    {
+      "source": "demo_006",
+      "target": "demo_028",
+      "value": 0.3955
+    },
+    {
+      "source": "demo_021",
+      "target": "demo_029",
+      "value": 0.4717
+    }
+  ],
+  "categories": [
+    {
+      "name": "Classical"
+    },
+    {
+      "name": "Electronic"
+    },
+    {
+      "name": "Folk"
+    },
+    {
+      "name": "Hip-Hop"
+    },
+    {
+      "name": "Jazz"
+    },
+    {
+      "name": "Metal"
+    },
+    {
+      "name": "Pop"
+    },
+    {
+      "name": "Rock"
+    }
+  ],
+  "recommendations": {
+    "demo_000": [
+      {
+        "id": "demo_024",
+        "title": "Lunar Static",
+        "artist": "Aster Club",
+        "genre": "Pop",
+        "similarity": 0.7917
+      },
+      {
+        "id": "demo_008",
+        "title": "Distant Signal",
+        "artist": "Mono Bloom",
+        "genre": "Pop",
+        "similarity": 0.7861
+      },
+      {
+        "id": "demo_016",
+        "title": "Golden Pulse",
+        "artist": "Aster Club",
+        "genre": "Pop",
+        "similarity": 0.7654
+      },
+      {
+        "id": "demo_001",
+        "title": "Electric Lights",
+        "artist": "Glass Harbor",
+        "genre": "Rock",
+        "similarity": 0.603
+      },
+      {
+        "id": "demo_017",
+        "title": "Blue Signal",
+        "artist": "Aster Club",
+        "genre": "Rock",
+        "similarity": 0.5836
+      }
+    ],
+    "demo_001": [
+      {
+        "id": "demo_009",
+        "title": "Blue Skies",
+        "artist": "The Satellites",
+        "genre": "Rock",
+        "similarity": 0.6116
+      },
+      {
+        "id": "demo_000",
+        "title": "Crystal Voyage",
+        "artist": "Aster Club",
+        "genre": "Pop",
+        "similarity": 0.603
+      },
+      {
+        "id": "demo_008",
+        "title": "Distant Signal",
+        "artist": "Mono Bloom",
+        "genre": "Pop",
+        "similarity": 0.5324
+      },
+      {
+        "id": "demo_017",
+        "title": "Blue Signal",
+        "artist": "Aster Club",
+        "genre": "Rock",
+        "similarity": 0.4839
+      },
+      {
+        "id": "demo_010",
+        "title": "Crystal Dream",
+        "artist": "Paper Comets",
+        "genre": "Electronic",
+        "similarity": 0.479
+      }
+    ],
+    "demo_002": [
+      {
+        "id": "demo_026",
+        "title": "Blue Horizon",
+        "artist": "Mira Chen",
+        "genre": "Electronic",
+        "similarity": 0.8207
+      },
+      {
+        "id": "demo_017",
+        "title": "Blue Signal",
+        "artist": "Aster Club",
+        "genre": "Rock",
+        "similarity": 0.5621
+      },
+      {
+        "id": "demo_009",
+        "title": "Blue Skies",
+        "artist": "The Satellites",
+        "genre": "Rock",
+        "similarity": 0.5424
+      },
+      {
+        "id": "demo_018",
+        "title": "Northern Orbit",
+        "artist": "The Satellites",
+        "genre": "Electronic",
+        "similarity": 0.4826
+      },
+      {
+        "id": "demo_025",
+        "title": "Distant Garden",
+        "artist": "The Satellites",
+        "genre": "Rock",
+        "similarity": 0.4412
+      }
+    ],
+    "demo_003": [
+      {
+        "id": "demo_021",
+        "title": "Parallel Voyage",
+        "artist": "June Atlas",
+        "genre": "Classical",
+        "similarity": 0.4817
+      },
+      {
+        "id": "demo_027",
+        "title": "Lunar Signal",
+        "artist": "Mira Chen",
+        "genre": "Folk",
+        "similarity": 0.4018
+      },
+      {
+        "id": "demo_005",
+        "title": "Velvet Voyage",
+        "artist": "Aster Club",
+        "genre": "Classical",
+        "similarity": 0.3946
+      },
+      {
+        "id": "demo_028",
+        "title": "Golden Memory",
+        "artist": "Paper Comets",
+        "genre": "Hip-Hop",
+        "similarity": 0.3193
+      },
+      {
+        "id": "demo_019",
+        "title": "Northern Rain",
+        "artist": "Low Gravity",
+        "genre": "Folk",
+        "similarity": 0.3039
+      }
+    ],
+    "demo_004": [
+      {
+        "id": "demo_029",
+        "title": "Silent Lights",
+        "artist": "Low Gravity",
+        "genre": "Classical",
+        "similarity": 0.742
+      },
+      {
+        "id": "demo_013",
+        "title": "Midnight Voyage",
+        "artist": "Glass Harbor",
+        "genre": "Classical",
+        "similarity": 0.699
+      },
+      {
+        "id": "demo_011",
+        "title": "Lunar Dream",
+        "artist": "Mono Bloom",
+        "genre": "Folk",
+        "similarity": 0.6277
+      },
+      {
+        "id": "demo_005",
+        "title": "Velvet Voyage",
+        "artist": "Aster Club",
+        "genre": "Classical",
+        "similarity": 0.5857
+      },
+      {
+        "id": "demo_022",
+        "title": "Electric Dream",
+        "artist": "Mira Chen",
+        "genre": "Jazz",
+        "similarity": 0.4337
+      }
+    ],
+    "demo_005": [
+      {
+        "id": "demo_029",
+        "title": "Silent Lights",
+        "artist": "Low Gravity",
+        "genre": "Classical",
+        "similarity": 0.812
+      },
+      {
+        "id": "demo_021",
+        "title": "Parallel Voyage",
+        "artist": "June Atlas",
+        "genre": "Classical",
+        "similarity": 0.6697
+      },
+      {
+        "id": "demo_022",
+        "title": "Electric Dream",
+        "artist": "Mira Chen",
+        "genre": "Jazz",
+        "similarity": 0.6563
+      },
+      {
+        "id": "demo_013",
+        "title": "Midnight Voyage",
+        "artist": "Glass Harbor",
+        "genre": "Classical",
+        "similarity": 0.6296
+      },
+      {
+        "id": "demo_004",
+        "title": "Echo Orbit",
+        "artist": "Mira Chen",
+        "genre": "Hip-Hop",
+        "similarity": 0.5857
+      }
+    ],
+    "demo_006": [
+      {
+        "id": "demo_014",
+        "title": "Golden Static",
+        "artist": "Night Circuit",
+        "genre": "Jazz",
+        "similarity": 0.705
+      },
+      {
+        "id": "demo_021",
+        "title": "Parallel Voyage",
+        "artist": "June Atlas",
+        "genre": "Classical",
+        "similarity": 0.5664
+      },
+      {
+        "id": "demo_013",
+        "title": "Midnight Voyage",
+        "artist": "Glass Harbor",
+        "genre": "Classical",
+        "similarity": 0.4974
+      },
+      {
+        "id": "demo_023",
+        "title": "Blue Voyage",
+        "artist": "Mira Chen",
+        "genre": "Metal",
+        "similarity": 0.4658
+      },
+      {
+        "id": "demo_022",
+        "title": "Electric Dream",
+        "artist": "Mira Chen",
+        "genre": "Jazz",
+        "similarity": 0.441
+      }
+    ],
+    "demo_007": [
+      {
+        "id": "demo_023",
+        "title": "Blue Voyage",
+        "artist": "Mira Chen",
+        "genre": "Metal",
+        "similarity": 0.8017
+      },
+      {
+        "id": "demo_015",
+        "title": "Golden Signal",
+        "artist": "Mira Chen",
+        "genre": "Metal",
+        "similarity": 0.7383
+      },
+      {
+        "id": "demo_014",
+        "title": "Golden Static",
+        "artist": "Night Circuit",
+        "genre": "Jazz",
+        "similarity": 0.4342
+      },
+      {
+        "id": "demo_022",
+        "title": "Electric Dream",
+        "artist": "Mira Chen",
+        "genre": "Jazz",
+        "similarity": 0.393
+      },
+      {
+        "id": "demo_006",
+        "title": "Blue Fire",
+        "artist": "Low Gravity",
+        "genre": "Jazz",
+        "similarity": 0.3618
+      }
+    ],
+    "demo_008": [
+      {
+        "id": "demo_000",
+        "title": "Crystal Voyage",
+        "artist": "Aster Club",
+        "genre": "Pop",
+        "similarity": 0.7861
+      },
+      {
+        "id": "demo_024",
+        "title": "Lunar Static",
+        "artist": "Aster Club",
+        "genre": "Pop",
+        "similarity": 0.7723
+      },
+      {
+        "id": "demo_016",
+        "title": "Golden Pulse",
+        "artist": "Aster Club",
+        "genre": "Pop",
+        "similarity": 0.7628
+      },
+      {
+        "id": "demo_010",
+        "title": "Crystal Dream",
+        "artist": "Paper Comets",
+        "genre": "Electronic",
+        "similarity": 0.6337
+      },
+      {
+        "id": "demo_001",
+        "title": "Electric Lights",
+        "artist": "Glass Harbor",
+        "genre": "Rock",
+        "similarity": 0.5324
+      }
+    ],
+    "demo_009": [
+      {
+        "id": "demo_001",
+        "title": "Electric Lights",
+        "artist": "Glass Harbor",
+        "genre": "Rock",
+        "similarity": 0.6116
+      },
+      {
+        "id": "demo_002",
+        "title": "Electric Garden",
+        "artist": "Mira Chen",
+        "genre": "Electronic",
+        "similarity": 0.5424
+      },
+      {
+        "id": "demo_018",
+        "title": "Northern Orbit",
+        "artist": "The Satellites",
+        "genre": "Electronic",
+        "similarity": 0.5033
+      },
+      {
+        "id": "demo_010",
+        "title": "Crystal Dream",
+        "artist": "Paper Comets",
+        "genre": "Electronic",
+        "similarity": 0.4711
+      },
+      {
+        "id": "demo_026",
+        "title": "Blue Horizon",
+        "artist": "Mira Chen",
+        "genre": "Electronic",
+        "similarity": 0.3753
+      }
+    ],
+    "demo_010": [
+      {
+        "id": "demo_008",
+        "title": "Distant Signal",
+        "artist": "Mono Bloom",
+        "genre": "Pop",
+        "similarity": 0.6337
+      },
+      {
+        "id": "demo_018",
+        "title": "Northern Orbit",
+        "artist": "The Satellites",
+        "genre": "Electronic",
+        "similarity": 0.5369
+      },
+      {
+        "id": "demo_024",
+        "title": "Lunar Static",
+        "artist": "Aster Club",
+        "genre": "Pop",
+        "similarity": 0.4892
+      },
+      {
+        "id": "demo_001",
+        "title": "Electric Lights",
+        "artist": "Glass Harbor",
+        "genre": "Rock",
+        "similarity": 0.479
+      },
+      {
+        "id": "demo_009",
+        "title": "Blue Skies",
+        "artist": "The Satellites",
+        "genre": "Rock",
+        "similarity": 0.4711
+      }
+    ],
+    "demo_011": [
+      {
+        "id": "demo_004",
+        "title": "Echo Orbit",
+        "artist": "Mira Chen",
+        "genre": "Hip-Hop",
+        "similarity": 0.6277
+      },
+      {
+        "id": "demo_013",
+        "title": "Midnight Voyage",
+        "artist": "Glass Harbor",
+        "genre": "Classical",
+        "similarity": 0.5865
+      },
+      {
+        "id": "demo_022",
+        "title": "Electric Dream",
+        "artist": "Mira Chen",
+        "genre": "Jazz",
+        "similarity": 0.4468
+      },
+      {
+        "id": "demo_029",
+        "title": "Silent Lights",
+        "artist": "Low Gravity",
+        "genre": "Classical",
+        "similarity": 0.3789
+      },
+      {
+        "id": "demo_005",
+        "title": "Velvet Voyage",
+        "artist": "Aster Club",
+        "genre": "Classical",
+        "similarity": 0.3389
+      }
+    ],
+    "demo_012": [
+      {
+        "id": "demo_019",
+        "title": "Northern Rain",
+        "artist": "Low Gravity",
+        "genre": "Folk",
+        "similarity": 0.4025
+      },
+      {
+        "id": "demo_001",
+        "title": "Electric Lights",
+        "artist": "Glass Harbor",
+        "genre": "Rock",
+        "similarity": 0.3825
+      },
+      {
+        "id": "demo_000",
+        "title": "Crystal Voyage",
+        "artist": "Aster Club",
+        "genre": "Pop",
+        "similarity": 0.368
+      },
+      {
+        "id": "demo_027",
+        "title": "Lunar Signal",
+        "artist": "Mira Chen",
+        "genre": "Folk",
+        "similarity": 0.2516
+      },
+      {
+        "id": "demo_008",
+        "title": "Distant Signal",
+        "artist": "Mono Bloom",
+        "genre": "Pop",
+        "similarity": 0.2464
+      }
+    ],
+    "demo_013": [
+      {
+        "id": "demo_029",
+        "title": "Silent Lights",
+        "artist": "Low Gravity",
+        "genre": "Classical",
+        "similarity": 0.7658
+      },
+      {
+        "id": "demo_004",
+        "title": "Echo Orbit",
+        "artist": "Mira Chen",
+        "genre": "Hip-Hop",
+        "similarity": 0.699
+      },
+      {
+        "id": "demo_005",
+        "title": "Velvet Voyage",
+        "artist": "Aster Club",
+        "genre": "Classical",
+        "similarity": 0.6296
+      },
+      {
+        "id": "demo_011",
+        "title": "Lunar Dream",
+        "artist": "Mono Bloom",
+        "genre": "Folk",
+        "similarity": 0.5865
+      },
+      {
+        "id": "demo_021",
+        "title": "Parallel Voyage",
+        "artist": "June Atlas",
+        "genre": "Classical",
+        "similarity": 0.5665
+      }
+    ],
+    "demo_014": [
+      {
+        "id": "demo_022",
+        "title": "Electric Dream",
+        "artist": "Mira Chen",
+        "genre": "Jazz",
+        "similarity": 0.7533
+      },
+      {
+        "id": "demo_006",
+        "title": "Blue Fire",
+        "artist": "Low Gravity",
+        "genre": "Jazz",
+        "similarity": 0.705
+      },
+      {
+        "id": "demo_023",
+        "title": "Blue Voyage",
+        "artist": "Mira Chen",
+        "genre": "Metal",
+        "similarity": 0.5191
+      },
+      {
+        "id": "demo_005",
+        "title": "Velvet Voyage",
+        "artist": "Aster Club",
+        "genre": "Classical",
+        "similarity": 0.4951
+      },
+      {
+        "id": "demo_007",
+        "title": "Velvet Horizon",
+        "artist": "The Satellites",
+        "genre": "Metal",
+        "similarity": 0.4342
+      }
+    ],
+    "demo_015": [
+      {
+        "id": "demo_023",
+        "title": "Blue Voyage",
+        "artist": "Mira Chen",
+        "genre": "Metal",
+        "similarity": 0.8232
+      },
+      {
+        "id": "demo_007",
+        "title": "Velvet Horizon",
+        "artist": "The Satellites",
+        "genre": "Metal",
+        "similarity": 0.7383
+      },
+      {
+        "id": "demo_002",
+        "title": "Electric Garden",
+        "artist": "Mira Chen",
+        "genre": "Electronic",
+        "similarity": 0.3382
+      },
+      {
+        "id": "demo_026",
+        "title": "Blue Horizon",
+        "artist": "Mira Chen",
+        "genre": "Electronic",
+        "similarity": 0.2643
+      },
+      {
+        "id": "demo_006",
+        "title": "Blue Fire",
+        "artist": "Low Gravity",
+        "genre": "Jazz",
+        "similarity": 0.2546
+      }
+    ],
+    "demo_016": [
+      {
+        "id": "demo_000",
+        "title": "Crystal Voyage",
+        "artist": "Aster Club",
+        "genre": "Pop",
+        "similarity": 0.7654
+      },
+      {
+        "id": "demo_008",
+        "title": "Distant Signal",
+        "artist": "Mono Bloom",
+        "genre": "Pop",
+        "similarity": 0.7628
+      },
+      {
+        "id": "demo_024",
+        "title": "Lunar Static",
+        "artist": "Aster Club",
+        "genre": "Pop",
+        "similarity": 0.7221
+      },
+      {
+        "id": "demo_017",
+        "title": "Blue Signal",
+        "artist": "Aster Club",
+        "genre": "Rock",
+        "similarity": 0.5226
+      },
+      {
+        "id": "demo_026",
+        "title": "Blue Horizon",
+        "artist": "Mira Chen",
+        "genre": "Electronic",
+        "similarity": 0.4352
+      }
+    ],
+    "demo_017": [
+      {
+        "id": "demo_025",
+        "title": "Distant Garden",
+        "artist": "The Satellites",
+        "genre": "Rock",
+        "similarity": 0.7311
+      },
+      {
+        "id": "demo_026",
+        "title": "Blue Horizon",
+        "artist": "Mira Chen",
+        "genre": "Electronic",
+        "similarity": 0.5885
+      },
+      {
+        "id": "demo_000",
+        "title": "Crystal Voyage",
+        "artist": "Aster Club",
+        "genre": "Pop",
+        "similarity": 0.5836
+      },
+      {
+        "id": "demo_002",
+        "title": "Electric Garden",
+        "artist": "Mira Chen",
+        "genre": "Electronic",
+        "similarity": 0.5621
+      },
+      {
+        "id": "demo_016",
+        "title": "Golden Pulse",
+        "artist": "Aster Club",
+        "genre": "Pop",
+        "similarity": 0.5226
+      }
+    ],
+    "demo_018": [
+      {
+        "id": "demo_010",
+        "title": "Crystal Dream",
+        "artist": "Paper Comets",
+        "genre": "Electronic",
+        "similarity": 0.5369
+      },
+      {
+        "id": "demo_009",
+        "title": "Blue Skies",
+        "artist": "The Satellites",
+        "genre": "Rock",
+        "similarity": 0.5033
+      },
+      {
+        "id": "demo_024",
+        "title": "Lunar Static",
+        "artist": "Aster Club",
+        "genre": "Pop",
+        "similarity": 0.4974
+      },
+      {
+        "id": "demo_002",
+        "title": "Electric Garden",
+        "artist": "Mira Chen",
+        "genre": "Electronic",
+        "similarity": 0.4826
+      },
+      {
+        "id": "demo_000",
+        "title": "Crystal Voyage",
+        "artist": "Aster Club",
+        "genre": "Pop",
+        "similarity": 0.4817
+      }
+    ],
+    "demo_019": [
+      {
+        "id": "demo_005",
+        "title": "Velvet Voyage",
+        "artist": "Aster Club",
+        "genre": "Classical",
+        "similarity": 0.5062
+      },
+      {
+        "id": "demo_029",
+        "title": "Silent Lights",
+        "artist": "Low Gravity",
+        "genre": "Classical",
+        "similarity": 0.4575
+      },
+      {
+        "id": "demo_004",
+        "title": "Echo Orbit",
+        "artist": "Mira Chen",
+        "genre": "Hip-Hop",
+        "similarity": 0.4053
+      },
+      {
+        "id": "demo_012",
+        "title": "Lunar Voyage",
+        "artist": "Mono Bloom",
+        "genre": "Hip-Hop",
+        "similarity": 0.4025
+      },
+      {
+        "id": "demo_028",
+        "title": "Golden Memory",
+        "artist": "Paper Comets",
+        "genre": "Hip-Hop",
+        "similarity": 0.3463
+      }
+    ],
+    "demo_020": [
+      {
+        "id": "demo_021",
+        "title": "Parallel Voyage",
+        "artist": "June Atlas",
+        "genre": "Classical",
+        "similarity": 0.4279
+      },
+      {
+        "id": "demo_013",
+        "title": "Midnight Voyage",
+        "artist": "Glass Harbor",
+        "genre": "Classical",
+        "similarity": 0.3936
+      },
+      {
+        "id": "demo_029",
+        "title": "Silent Lights",
+        "artist": "Low Gravity",
+        "genre": "Classical",
+        "similarity": 0.3202
+      },
+      {
+        "id": "demo_028",
+        "title": "Golden Memory",
+        "artist": "Paper Comets",
+        "genre": "Hip-Hop",
+        "similarity": 0.3181
+      },
+      {
+        "id": "demo_006",
+        "title": "Blue Fire",
+        "artist": "Low Gravity",
+        "genre": "Jazz",
+        "similarity": 0.2863
+      }
+    ],
+    "demo_021": [
+      {
+        "id": "demo_005",
+        "title": "Velvet Voyage",
+        "artist": "Aster Club",
+        "genre": "Classical",
+        "similarity": 0.6697
+      },
+      {
+        "id": "demo_013",
+        "title": "Midnight Voyage",
+        "artist": "Glass Harbor",
+        "genre": "Classical",
+        "similarity": 0.5665
+      },
+      {
+        "id": "demo_006",
+        "title": "Blue Fire",
+        "artist": "Low Gravity",
+        "genre": "Jazz",
+        "similarity": 0.5664
+      },
+      {
+        "id": "demo_028",
+        "title": "Golden Memory",
+        "artist": "Paper Comets",
+        "genre": "Hip-Hop",
+        "similarity": 0.5202
+      },
+      {
+        "id": "demo_003",
+        "title": "Northern Voyage",
+        "artist": "Nova Lane",
+        "genre": "Folk",
+        "similarity": 0.4817
+      }
+    ],
+    "demo_022": [
+      {
+        "id": "demo_014",
+        "title": "Golden Static",
+        "artist": "Night Circuit",
+        "genre": "Jazz",
+        "similarity": 0.7533
+      },
+      {
+        "id": "demo_005",
+        "title": "Velvet Voyage",
+        "artist": "Aster Club",
+        "genre": "Classical",
+        "similarity": 0.6563
+      },
+      {
+        "id": "demo_029",
+        "title": "Silent Lights",
+        "artist": "Low Gravity",
+        "genre": "Classical",
+        "similarity": 0.4841
+      },
+      {
+        "id": "demo_013",
+        "title": "Midnight Voyage",
+        "artist": "Glass Harbor",
+        "genre": "Classical",
+        "similarity": 0.464
+      },
+      {
+        "id": "demo_011",
+        "title": "Lunar Dream",
+        "artist": "Mono Bloom",
+        "genre": "Folk",
+        "similarity": 0.4468
+      }
+    ],
+    "demo_023": [
+      {
+        "id": "demo_015",
+        "title": "Golden Signal",
+        "artist": "Mira Chen",
+        "genre": "Metal",
+        "similarity": 0.8232
+      },
+      {
+        "id": "demo_007",
+        "title": "Velvet Horizon",
+        "artist": "The Satellites",
+        "genre": "Metal",
+        "similarity": 0.8017
+      },
+      {
+        "id": "demo_014",
+        "title": "Golden Static",
+        "artist": "Night Circuit",
+        "genre": "Jazz",
+        "similarity": 0.5191
+      },
+      {
+        "id": "demo_006",
+        "title": "Blue Fire",
+        "artist": "Low Gravity",
+        "genre": "Jazz",
+        "similarity": 0.4658
+      },
+      {
+        "id": "demo_022",
+        "title": "Electric Dream",
+        "artist": "Mira Chen",
+        "genre": "Jazz",
+        "similarity": 0.3955
+      }
+    ],
+    "demo_024": [
+      {
+        "id": "demo_000",
+        "title": "Crystal Voyage",
+        "artist": "Aster Club",
+        "genre": "Pop",
+        "similarity": 0.7917
+      },
+      {
+        "id": "demo_008",
+        "title": "Distant Signal",
+        "artist": "Mono Bloom",
+        "genre": "Pop",
+        "similarity": 0.7723
+      },
+      {
+        "id": "demo_016",
+        "title": "Golden Pulse",
+        "artist": "Aster Club",
+        "genre": "Pop",
+        "similarity": 0.7221
+      },
+      {
+        "id": "demo_018",
+        "title": "Northern Orbit",
+        "artist": "The Satellites",
+        "genre": "Electronic",
+        "similarity": 0.4974
+      },
+      {
+        "id": "demo_010",
+        "title": "Crystal Dream",
+        "artist": "Paper Comets",
+        "genre": "Electronic",
+        "similarity": 0.4892
+      }
+    ],
+    "demo_025": [
+      {
+        "id": "demo_017",
+        "title": "Blue Signal",
+        "artist": "Aster Club",
+        "genre": "Rock",
+        "similarity": 0.7311
+      },
+      {
+        "id": "demo_000",
+        "title": "Crystal Voyage",
+        "artist": "Aster Club",
+        "genre": "Pop",
+        "similarity": 0.5017
+      },
+      {
+        "id": "demo_026",
+        "title": "Blue Horizon",
+        "artist": "Mira Chen",
+        "genre": "Electronic",
+        "similarity": 0.4935
+      },
+      {
+        "id": "demo_002",
+        "title": "Electric Garden",
+        "artist": "Mira Chen",
+        "genre": "Electronic",
+        "similarity": 0.4412
+      },
+      {
+        "id": "demo_016",
+        "title": "Golden Pulse",
+        "artist": "Aster Club",
+        "genre": "Pop",
+        "similarity": 0.3706
+      }
+    ],
+    "demo_026": [
+      {
+        "id": "demo_002",
+        "title": "Electric Garden",
+        "artist": "Mira Chen",
+        "genre": "Electronic",
+        "similarity": 0.8207
+      },
+      {
+        "id": "demo_017",
+        "title": "Blue Signal",
+        "artist": "Aster Club",
+        "genre": "Rock",
+        "similarity": 0.5885
+      },
+      {
+        "id": "demo_025",
+        "title": "Distant Garden",
+        "artist": "The Satellites",
+        "genre": "Rock",
+        "similarity": 0.4935
+      },
+      {
+        "id": "demo_024",
+        "title": "Lunar Static",
+        "artist": "Aster Club",
+        "genre": "Pop",
+        "similarity": 0.4628
+      },
+      {
+        "id": "demo_016",
+        "title": "Golden Pulse",
+        "artist": "Aster Club",
+        "genre": "Pop",
+        "similarity": 0.4352
+      }
+    ],
+    "demo_027": [
+      {
+        "id": "demo_003",
+        "title": "Northern Voyage",
+        "artist": "Nova Lane",
+        "genre": "Folk",
+        "similarity": 0.4018
+      },
+      {
+        "id": "demo_005",
+        "title": "Velvet Voyage",
+        "artist": "Aster Club",
+        "genre": "Classical",
+        "similarity": 0.3934
+      },
+      {
+        "id": "demo_029",
+        "title": "Silent Lights",
+        "artist": "Low Gravity",
+        "genre": "Classical",
+        "similarity": 0.3631
+      },
+      {
+        "id": "demo_008",
+        "title": "Distant Signal",
+        "artist": "Mono Bloom",
+        "genre": "Pop",
+        "similarity": 0.3626
+      },
+      {
+        "id": "demo_019",
+        "title": "Northern Rain",
+        "artist": "Low Gravity",
+        "genre": "Folk",
+        "similarity": 0.3132
+      }
+    ],
+    "demo_028": [
+      {
+        "id": "demo_021",
+        "title": "Parallel Voyage",
+        "artist": "June Atlas",
+        "genre": "Classical",
+        "similarity": 0.5202
+      },
+      {
+        "id": "demo_006",
+        "title": "Blue Fire",
+        "artist": "Low Gravity",
+        "genre": "Jazz",
+        "similarity": 0.3955
+      },
+      {
+        "id": "demo_019",
+        "title": "Northern Rain",
+        "artist": "Low Gravity",
+        "genre": "Folk",
+        "similarity": 0.3463
+      },
+      {
+        "id": "demo_003",
+        "title": "Northern Voyage",
+        "artist": "Nova Lane",
+        "genre": "Folk",
+        "similarity": 0.3193
+      },
+      {
+        "id": "demo_020",
+        "title": "Neon Lights",
+        "artist": "Mira Chen",
+        "genre": "Hip-Hop",
+        "similarity": 0.3181
+      }
+    ],
+    "demo_029": [
+      {
+        "id": "demo_005",
+        "title": "Velvet Voyage",
+        "artist": "Aster Club",
+        "genre": "Classical",
+        "similarity": 0.812
+      },
+      {
+        "id": "demo_013",
+        "title": "Midnight Voyage",
+        "artist": "Glass Harbor",
+        "genre": "Classical",
+        "similarity": 0.7658
+      },
+      {
+        "id": "demo_004",
+        "title": "Echo Orbit",
+        "artist": "Mira Chen",
+        "genre": "Hip-Hop",
+        "similarity": 0.742
+      },
+      {
+        "id": "demo_022",
+        "title": "Electric Dream",
+        "artist": "Mira Chen",
+        "genre": "Jazz",
+        "similarity": 0.4841
+      },
+      {
+        "id": "demo_021",
+        "title": "Parallel Voyage",
+        "artist": "June Atlas",
+        "genre": "Classical",
+        "similarity": 0.4717
+      }
+    ]
+  },
+  "meta": {
+    "trackCount": 30,
+    "edgeCount": 94,
+    "topK": 5
+  }
+}
