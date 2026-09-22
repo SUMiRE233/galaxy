@@ -3,7 +3,7 @@
 Music Galaxy 是一个面向数据可视化课程的项目。它将每首歌曲表示为一个节点，将音频特征相似度表示为边，再通过 ECharts 力导向布局形成可交互的"音乐星系"。
 
 项目重点是音乐相似关系可视化，而不是训练音乐分类模型。没有本地音频时，也可以仅使用内置 demo 数据完整运行。
-![Music Galaxy synthetic public demo](assets/music-galaxy-hero.png)
+![Music Galaxy 脱敏公开演示](assets/music-galaxy-hero.png)
 
 
 ## 项目目标
@@ -280,51 +280,50 @@ python -m http.server 8000
 ```
 
 
-## Architecture
+## 系统架构
 
 ```mermaid
 flowchart LR
-    A[Deterministic demo] --> D[Unified feature schema]
-    B[Optional personal audio] --> D
-    C[Local GTZAN] --> D
+    A[确定性 Demo] --> D[统一特征模式]
+    B[可选个人音频] --> D
+    C[本地 GTZAN] --> D
     D --> E[StandardScaler]
-    E --> F[Cosine similarity]
-    F --> G[Top-K graph JSON]
-    G --> H[ECharts force graph]
-    B --> I[Local FastAPI upload and audio API]
+    E --> F[余弦相似度]
+    F --> G[Top-K 图谱 JSON]
+    G --> H[ECharts 力导向图]
+    B --> I[本地 FastAPI 上传与音频 API]
     I --> D
 ```
 
-The browser is a static ECharts application. Python scripts own feature
-extraction and graph construction, while the local FastAPI service only enables
-optional personal-audio upload, graph rebuilding, and playback.
+浏览器端是一个静态 ECharts 应用。Python 脚本负责特征提取和图谱构建；本地
+FastAPI 服务仅用于可选的个人音频上传、图谱重建与播放。
 
-## Public data and reproducibility boundary
+## 公开数据与可复现性边界
 
-The original FMA source-audio database was corrupt and is no longer part of
-the reproducibility claim. Personal audio, personal metadata, processed files,
-and locally generated `web/music_graph.json` are ignored by Git.
+原始 FMA 音频数据库已经损坏，因此不再属于本项目的可复现性声明范围。个人
+音频、个人元数据、处理后文件，以及本地生成的 `web/music_graph.json` 均被
+Git 忽略。
 
-The repository instead includes:
+仓库改为提供以下公开产物：
 
-- `data/examples/demo_features.csv`: deterministic synthetic feature input;
-- `web/music_graph.example.json`: sanitized browser fallback with no audio paths;
-- `scripts/07_build_public_fixture.py`: deterministic fixture generator.
+- `data/examples/demo_features.csv`：确定性生成的模拟特征输入；
+- `web/music_graph.example.json`：不含音频路径的脱敏浏览器回退图谱；
+- `scripts/07_build_public_fixture.py`：确定性公开样例生成脚本。
 
-Regenerate the public fixture with:
+使用以下命令重新生成公开样例：
 
 ```bash
 python scripts/07_build_public_fixture.py --count 30 --top-k 5 --seed 42
 ```
 
-If `web/music_graph.json` is absent, the browser automatically loads
-`web/music_graph.example.json`. GTZAN audio may be restored locally and rebuilt
-through the documented pipeline, but the repository does not redistribute it.
-The retired FMA chain is not part of the current architecture.
+如果缺少 `web/music_graph.json`，浏览器会自动加载
+`web/music_graph.example.json`。GTZAN 音频可以在本地恢复，并通过文档中的
+管线重新构建，但本仓库不会重新分发原始音频。已经退役的 FMA 链路不属于当前
+架构。
 
-## Tests
+## 测试
 
-Install development dependencies and run:
+安装开发依赖并运行：
 
 ```bash
 pip install -r requirements-dev.txt
@@ -332,52 +331,48 @@ python -m unittest discover -s tests -v
 node --test tests/test_graph_utils.js
 ```
 
-The suite covers graph invariants, duplicate IDs, missing features, Top-K
-limits, deterministic output, GTZAN detection/path resolution, upload
-validation, path traversal rejection, sanitized fixtures, frontend Top-K
-filtering, personal export/delete/reset, frozen human-evaluation generation and
-scoring, and a clean-temporary-workspace demo pipeline.
+测试套件覆盖图结构不变量、重复 ID、缺失特征、Top-K 边界、确定性输出、GTZAN
+检测与路径解析、上传校验、路径穿越拒绝、脱敏样例、前端 Top-K 筛选、个人数据
+导出/删除/重置、冻结人工评测集的生成与评分，以及干净临时工作区中的 Demo
+端到端管线。
 
-## Evaluation
+## 评测
 
-Engineering benchmark:
+工程性能基准：
 
 ```bash
 python scripts/08_benchmark_graph.py --sizes 100 1000 5000 --top-k 20 --seed 42
 ```
 
-Current local baseline:
+当前本地基准结果：
 
-| Songs | Time | Peak RSS | JSON size |
+| 歌曲数 | 构图时间 | 峰值内存 RSS | JSON 大小 |
 |---:|---:|---:|---:|
 | 100 | 0.31 s | 142 MiB | 0.32 MiB |
 | 1000 | 3.27 s | 163 MiB | 3.29 MiB |
 | 5000 | 16.29 s | 403 MiB | 16.74 MiB |
 
-The current stop threshold for this local course project is 5000 synthetic
-tracks in under 30 seconds and under 512 MiB peak RSS. The dense implementation
-passes that threshold, so approximate-neighbor infrastructure is intentionally
-out of scope.
+本地课程项目的停止阈值是：5000 首模拟歌曲的构图时间低于 30 秒，峰值内存
+低于 512 MiB。当前稠密相似度实现已经达到该阈值，因此近似最近邻基础设施被
+明确排除在项目范围之外。
 
-For a separately frozen feature CSV:
+对于单独冻结的特征 CSV，可运行：
 
 ```bash
 python scripts/09_evaluate_similarity.py path/to/frozen_features.csv --top-k 5
 ```
 
-This compares standardized cosine similarity with unscaled cosine and a seeded
-random baseline. Same-genre Precision@K and NDCG@K are structural proxies only;
-they are not evidence of subjective musical similarity. On the 999 valid GTZAN
-tracks, standardized cosine reached same-genre Precision@5 `0.498298`, versus
-`0.361161` for unscaled cosine and `0.100701` for seeded random.
+该脚本比较标准化余弦相似度、未缩放余弦相似度和固定随机种子的随机基线。同
+流派 Precision@K 与 NDCG@K 仅作为结构性代理指标，不能直接证明主观听感相似。
+在 999 首有效 GTZAN 音频上，标准化余弦的同流派 Precision@5 为 `0.498298`，
+未缩放余弦为 `0.361161`，固定种子随机基线为 `0.100701`。
 
-The compact owner-review package is frozen at
-`evaluation/frozen/gtzan_human_v2/`: 10 queries (1 per genre), standardized
-cosine versus random, Top-3, and 60 audible pairs. The annotation template
-contains no method, track ID, genre, or path. The owner completed all 60 blinded
-comparisons. Standardized cosine reached owner-judged Precision@3 `0.733333`,
-versus `0.200000` for the seeded-random baseline (absolute difference
-`+0.533333`; 3.67x the baseline). Reproduce the scored result with:
+精简的所有者评测包冻结在 `evaluation/frozen/gtzan_human_v2/`：包含 10 首
+查询歌曲（每个流派 1 首）、标准化余弦与随机基线、Top-3，以及 60 个可试听
+音频对。标注模板不包含方法、歌曲 ID、流派或路径。项目所有者已经完成全部
+60 个盲测对比。标准化余弦的所有者评定 Precision@3 为 `0.733333`，固定种子
+随机基线为 `0.200000`，绝对提升 `+0.533333`，约为基线的 3.67 倍。使用以下
+命令复现评分结果：
 
 ```bash
 python scripts/11_score_human_evaluation.py \
@@ -386,49 +381,43 @@ python scripts/11_score_human_evaluation.py \
   --output evaluation/results/human_similarity.json
 ```
 
-The machine-readable aggregate result is committed at
-`evaluation/results/human_similarity.json`; the private row-level labels remain
-under the ignored `evaluation/local_annotations/` directory. This is a compact
-single-owner result, not evidence of general listener agreement. See
-`evaluation/README.md` and `evaluation/annotation_guideline.md`.
+机器可读的汇总结果已提交至 `evaluation/results/human_similarity.json`；逐条
+私人标签仍保存在被忽略的 `evaluation/local_annotations/` 目录中。这是一项
+小规模、单标注者评测，不能作为一般听众共识的证据。详见
+`evaluation/README.md` 和 `evaluation/annotation_guideline.md`。
 
-## AI-assisted development
+## AI 协作开发
 
-This project used AI-assisted development for implementation, review, debugging,
-and test generation. The project contribution is best described through problem
-framing, architecture constraints, schema decisions, regression diagnosis,
-validation design, and acceptance or rejection of generated changes—not as
-independent authorship of every line.
+本项目在实现、审查、调试和测试生成过程中使用了 AI 协作开发。个人贡献更适合
+表述为：问题定义、架构约束、数据模式决策、回归诊断、验证方案设计，以及对生成
+变更的接受或否决；不应表述为独立手写了每一行代码。
 
-## Known limitations
+## 已知局限
 
-- Similarity uses hand-designed aggregate audio features, not a learned music embedding.
-- Historical FMA mixed-source output is diagnostic evidence, not a frozen evaluation set.
-- GTZAN and personal audio are extracted through one implementation; third-party precomputed CSVs may still have distribution shift.
-- Dense cosine similarity is O(n²) and is intentionally bounded to the local 5000-track target.
-- Upload processing is synchronous and intended for small local batches.
-- ECharts is loaded from a CDN unless it is vendored locally.
-- Automatic restore/import of an exported personal-data ZIP is not implemented.
-- Published Git history intentionally retains historical personal metadata by owner decision.
+- 相似度使用人工设计的聚合音频特征，而不是学习得到的音乐嵌入。
+- 历史 FMA 混合数据源输出仅作为诊断证据，不属于冻结评测集。
+- GTZAN 与个人音频使用同一套实现提取特征，但第三方预计算 CSV 仍可能存在分布偏移。
+- 稠密余弦相似度的复杂度为 O(n²)，项目有意将规模限制在本地 5000 首歌曲以内。
+- 上传处理是同步执行的，仅适合本地小批量使用。
+- 除非改为本地托管，否则 ECharts 默认从 CDN 加载。
+- 个人数据导出 ZIP 尚不支持自动导入或恢复。
+- 根据所有者决定，已发布的 Git 历史会保留历史个人元数据。
 
-## Project status and stop condition
+## 项目状态与停止条件
 
-Status: completed, reproducible course-project MVP. Feature development is
-stopped; future changes should be maintenance or explicitly versioned research
-iterations.
+状态：已完成、可复现的课程项目 MVP。功能开发已经停止；后续变更应仅限维护，
+或作为明确版本化的新研究迭代。
 
-The project is complete when the clean demo and all regression tests pass, the
-5000-track benchmark remains within its threshold, a sanitized public demo is
-available, and a frozen human similarity evaluation has a recorded baseline,
-result, manifest, badcases, and limitations. New recommendation features,
-accounts, cloud services, and deep music models are explicitly out of scope.
+项目完成条件包括：干净环境 Demo 与全部回归测试通过；5000 首歌曲基准保持在
+阈值以内；提供脱敏公开演示；冻结人工相似度评测具有已记录的基线、结果、运行
+清单、坏案例与局限。新增推荐功能、账号系统、云服务和深度音乐模型均明确不在
+项目范围内。
 
-The owner also manually verified the local upload, playback, selected-node
-deletion, graph refresh, and reset workflow before final publication.
+最终发布前，项目所有者还手动验证了本地上传、播放、选中节点删除、图谱刷新和
+全量重置流程。
 
-## License
+## 许可证
 
-Project-authored code and documentation are released under the MIT License; see
-`LICENSE`. GTZAN audio, personal audio, generated private annotations, and
-third-party dependencies or assets retain their own terms and are not
-relicensed by this repository.
+项目原创代码和文档采用 MIT 许可证发布，详见 `LICENSE`。GTZAN 音频、个人
+音频、生成的私人标注，以及第三方依赖或素材仍遵循各自条款，本仓库不会对其
+重新授权。
